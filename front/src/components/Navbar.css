@@ -1,0 +1,42 @@
+.nav {
+    background-color: maroon;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.site-title {
+    font-size: 35px;
+}
+
+.nav ul {
+    margin: 0;
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.nav li {
+    list-style-type: none;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    transition: all 0.2s;
+    border-radius: 12px;
+}
+
+.nav ul a:hover {
+    background-color: white;
+    color: maroon;
+}
+
+.nav .active {
+    text-decoration: underline;
+}
+
+
