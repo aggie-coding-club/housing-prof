@@ -7,6 +7,7 @@ export default function Navbar() {
         <nav className="nav">
             <Link to="/" className="site-title">Housing Prof</Link>
             <ul>
+                <CustomLink to="/zach">Zach</CustomLink>
             </ul>
         </nav>
     );
