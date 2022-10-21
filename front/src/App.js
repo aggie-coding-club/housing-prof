@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Zach from "./pages/Zach";
 import Josh from "./pages/Josh";
+import John from "./pages/John";
 import "./App.css";
 
 
@@ -14,7 +15,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/zach" element={<Zach />} />
-            <Route path="josh" element={<Josh />} />
+          <Route path="josh" element={<Josh />} />
+          <Route path="/john" element={<John />} />
           </Routes>
       </div>
     </>

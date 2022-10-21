@@ -9,6 +9,7 @@ export default function Navbar() {
             <ul>
                 <CustomLink to="/zach">Zach</CustomLink>
                 <CustomLink to="josh">Josh</CustomLink>
+                <CustomLink to="/john">John</CustomLink>
             </ul>
         </nav>
     );
