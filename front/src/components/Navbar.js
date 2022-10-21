@@ -8,7 +8,8 @@ export default function Navbar() {
             <Link to="/" className="site-title">Housing Prof</Link>
             <ul>
                 <CustomLink to="/zach">Zach</CustomLink>
-                <CustomLink to="josh">Josh</CustomLink>
+                <CustomLink to="/josh">Josh</CustomLink>
+                <CustomLink to="/adnan">Adnan</CustomLink>
             </ul>
         </nav>
     );
