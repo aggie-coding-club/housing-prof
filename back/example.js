@@ -6,11 +6,12 @@
 
     Also make sure you make a new file called .gitignore and put into the file node_modules exactly as typed so that
         github does not push a massive amount of files, but be sure to have node_modules locally.
+
+    Do node example.js to run the code, and make sure you are cded into the same directory
 */
 
 // imports
 var fs = require('fs'); // file writer
-const readline = require('readline');
 const axios = require('axios');
 const cheerio = require('cheerio');
 var robotsParser = require('robots-parser'); // ignoring robots.txt and noIndex will block your crawler
@@ -55,49 +56,57 @@ async function fetchData(url) {
     */
 
     // get html data
+
+
+
+
+
+
     const html = response.data; // response call gets data
     const $ = cheerio.load(html); // cheerio loads in the page
     
-    var keywords = [];
+    var pageHtml = $.html(); // Example 1: gets the full html of the page, adding a ("element") after the $ gives the html of all the elements specified
+    var titleName = $("title").text(); // Example 2: name of the title of the page
+    var floorPlans1Wrapper = $("#floorplans-1"); // Example 3: gets the content of the element with id floorplans-1, the content of the 1 person bedrooms
+    var a1Wrapper = floorPlans1Wrapper.find(".fp-col-text")[0]; // Example 4: uses find to get the first element with class fp-col-text inside floorPlans1
+    var a1 = $(a1Wrapper).text(); // Gets the text of floor plan A1 after using the wrapper
 
-    var r = readline.createInterface({
-        input : fs.createReadStream('keywords.txt')
-    });
-    var i = 0;
+    var imageWrapper = floorPlans1Wrapper.find(".image-link")[0]; // finds first image inside floorPlans1
+    var imageLink = $(imageWrapper).find("img").attr("src"); // link to that image
 
-    r.on('line', function (text) {
-        keywords[i] = text;
-        i++;
-    });
+    //console.log(pageHtml); // uncomment to see the full html of the page printed out
+    console.log(titleName);
+    console.log(a1);
+    console.log(imageLink);
 
-    r.on('close', function () {
-        var titleName = $(keywords[0]).text();
-        var floorPlans1Wrapper = $(keywords[1]); 
-        var a1Wrapper = floorPlans1Wrapper.find(keywords[2])[0];
-        var a1 = $(a1Wrapper).text(); 
 
-        var imageWrapper = floorPlans1Wrapper.find(keywords[3])[0]; 
-        var imageLink = $(imageWrapper).find(keywords[4]).attr(keywords[5]); 
 
-        // noIndex
-        if ($.html().includes(noIndex)) { // breaks from the function and does not get anything if the html has a noIndex header
-            return;
-        }
 
-        // timestamp for when the data was retrieved
-        var today = new Date();
-        var timestamp = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + ' ' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
-        // writing json, you can format json like below
-        var json = {
-            title : titleName,
-            floor : a1,
-            image: imageLink,
-            time : timestamp
-        };
 
-        writeFile(json);
-    });
+    // noIndex
+    if ($.html().includes(noIndex)) { // breaks from the function and does not get anything if the html has a noIndex header
+        return;
+    }
+
+    // timestamp for when the data was retrieved
+    var today = new Date();
+    var timestamp = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + ' ' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+    // writing json, you can format json like below
+    var json = {
+        title : titleName,
+        //contents : pageHtml, // uncomment to write the full page to the data.json file
+        floor : a1,
+        image: imageLink,
+        time : timestamp
+    };
+
+
+
+    
+
+    writeFile(json);
 
     // waits 1 second before scraping another site, used when you are scraping multiple sites
     await new Promise(r => setTimeout(r, 1000));
