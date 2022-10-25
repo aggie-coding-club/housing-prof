@@ -8,12 +8,24 @@
 }
 
 .site-title {
+    display: flex;
+    gap: 10px;
     font-size: 35px;
+}
+
+.profile {
+    transform: scale(1.8);
+}
+
+#profile {
+    display: flex;
+    align-items: center;
 }
 
 .nav ul {
     margin: 0;
     display: flex;
+    align-items: center;
     gap: 10px;
     margin-left: auto;
 }
