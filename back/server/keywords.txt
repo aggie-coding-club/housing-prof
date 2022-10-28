@@ -1,6 +1,0 @@
-title
-#floorplans-1
-.fp-col-text
-.image-link
-img
-src
