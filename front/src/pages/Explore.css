@@ -1,0 +1,17 @@
+.explore-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 100%;
+  width: 100%;
+  flex: 1;
+}
+
+.filters-container {
+  border: 1px solid black;
+  background-color: #696969;
+}
+
+.listings-container {
+  border: 1px solid black;
+  background-color: #A9A9A9;
+}
