@@ -5,7 +5,7 @@ import Explore from "./pages/Explore";
 import Bookmarks from "./pages/Bookmarks";
 import MyListings from "./pages/MyListings";
 import Profile from "./pages/Profile";
-import "./App.css";
+import "./App.css"
 
 
 function App() {
