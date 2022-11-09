@@ -12,6 +12,23 @@
 }
 
 .listings-container {
+  display: flex;
   border: 1px solid black;
   background-color: #A9A9A9;
+  flex-wrap: wrap;
+  align-self: flex-start;
+  /* grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); */
+  gap: 25px;
+}
+
+.listings-container ul{
+  list-style-type: none;
+  color: black;
+  padding: 0;
+  margin: 0;
+}
+
+.listings-container a{
+  text-decoration: none;
+  color: black;
 }

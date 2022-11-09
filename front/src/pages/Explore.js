@@ -1,5 +1,6 @@
 import Filters from "../components/Filters";
-import Listing from "../components/Listing"
+import Listing from "../components/Listing";
+import { Link, useResolvedPath, useMatch } from "react-router-dom";
 import "./Explore.css";
 
 export default function Explore() {    
@@ -40,6 +41,15 @@ export default function Explore() {
         },
     ]
 
+    const cards = listings.map(listing => 
+        <div>
+            <CustomLink to="/">{
+                Listing(listing)}
+            </CustomLink>
+        </div>
+    );
+        
+
     return (
         <>
             <div className="explore-container">
@@ -48,10 +58,20 @@ export default function Explore() {
                 </div>
 
                 <div className="listings-container"> 
-                    <h1>Listings</h1>
-                    <Listing />
+                    {cards}
                 </div>
             </div>
         </>
+    );
+}
+
+function CustomLink({ to, children, ...props }) {
+    const resolvedPath = useResolvedPath(to);
+    const isActive = useMatch({ path: resolvedPath.pathname, end: true });
+
+    return (
+        <Link to={to} className={isActive ? "active" : ""} {...props}>
+            {children}
+        </Link>
     );
 }

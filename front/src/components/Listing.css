@@ -1,0 +1,31 @@
+.card-container {
+    display: flex;
+    border: 1px solid black;
+    background-color: #fdfdfd;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 0px 5px;
+    flex-direction: row;
+}
+
+.card-column{
+    border: 1px solid black;
+    padding: 5px;
+    margin: 10px;
+}
+
+.availability-toggle{
+    padding: 5px;
+    margin: 5px;
+}
+
+.availability-toggle.available{
+    background-color: green;
+    border: 1px solid black;
+}
+
+.card-column .two ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
