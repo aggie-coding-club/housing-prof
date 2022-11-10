@@ -1,11 +1,12 @@
-.atr4, .atr5, .atr6, .atr7{
+.atr4, .atr5, .atr6, .atr7 {
     border: 1px solid black;
     width: 200px;
     height: 100px;
     border-radius: 25px;
 
 }
-.atr2{
+
+.atr2 {
     border: 1px solid black;
     width: 400px;
     height: 250px;
@@ -19,7 +20,7 @@
 
 }
 
-.bookmark{
+.bookmark {
     border: 1px solid black;
     width: 100px;
     height: 100px;
@@ -28,9 +29,9 @@
     grid-column-end: 5;
     grid-row-start: 5;
     grid-row-end: 6;
-
 }
-.contact{
+
+.contact {
     border: 1px solid black;
     width: 100px;
     height:100px;
@@ -41,7 +42,8 @@
     grid-row-end: 7;
 
 }
-.atr3{
+
+.atr3 {
     border: 1px solid black;
     width: 400px;
     height: 250px;
@@ -54,26 +56,29 @@
 
 }
 
-.atr4{
+.atr4 {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 7;
     grid-row-end: 8;
 }
-.atr5{
+
+.atr5 {
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 7;
     grid-row-end: 8;
 
 }
-.atr6{
+
+.atr6 {
     grid-column-start: 5;
     grid-column-end: 6;
     grid-row-start: 7;
     grid-row-end: 8;
 }
-.atr7{
+
+.atr7 {
     grid-column-start: 6;
     grid-column-end: 7;
     grid-row-start: 7;
@@ -81,7 +86,7 @@
 }
 
 
-.attributes{
+.attributes {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -91,7 +96,7 @@
     overflow-x: hidden;
 }
 
-.atr1{
+.atr1 {
     display: flex;
     width: 1200px;
     height: 500px;
@@ -106,7 +111,7 @@
     align-items: center;
 }
 
-.atr8{
+.atr8 {
     width: 800px;
     height: 100px;
     border: 1px solid black;
@@ -116,21 +121,23 @@
     grid-row-end: -1;
 }
 
-.nextButton{
+.nextButton {
     height: 300px;
     border-radius: 20px 0px 0px 20px;
 }
-.prevButton{
+
+.prevButton {
     height: 300px;
     border-radius: 0px 20px 20px 0px;
     
 }
 
-.actionButtonNext{
+.actionButtonNext {
     height: 400px;
     border-radius: 20px 0px 0px 20px;
 }
-.actionButtonPrev{
+
+.actionButtonPrev {
     height: 400px;
     border-radius: 0px 20px 20px 0px;
 }

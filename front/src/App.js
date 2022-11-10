@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
 import Bookmarks from "./pages/Bookmarks";
-import MyListings from "./pages/MyListings";
+import ListingPage from "./pages/ListingPage";
 import Profile from "./pages/Profile";
 import "./App.css"
 
@@ -17,7 +17,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/bookmarks" element={<Bookmarks />} />
-            <Route path="/my-listings" element={<MyListings />} />
+            <Route path="/my-listings" element={<ListingPage />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
       </div>

@@ -28,7 +28,7 @@ export default function Navbar() {
             <ul>
                 <CustomLink to="/explore">Explore</CustomLink>
                 <CustomLink to="/bookmarks">Bookmarks</CustomLink>
-                <CustomLink to="/my-listings" state={{listing: listing}}>My Listings</CustomLink>
+                <CustomLink to="/my-listings" state={{listing: listing}}>Listing Page</CustomLink>
                 <CustomLink to="/profile" id="profile"><CgProfile className="profile"/></CustomLink>
             </ul>
         </nav>
