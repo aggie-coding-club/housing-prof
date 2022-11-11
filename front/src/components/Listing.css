@@ -14,6 +14,16 @@
     margin: 10px;
 }
 
+.card-column.two {
+    align-self: center;
+}
+
+.card-column.two ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 .availability-toggle{
     padding: 5px;
     margin: 5px;
@@ -29,9 +39,3 @@
     background-color: red;
 }
 
-.card-column.two ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    align-self: center;
-}
