@@ -17,15 +17,21 @@
 .availability-toggle{
     padding: 5px;
     margin: 5px;
+    border: 1px solid black;
+    align-self: center;
 }
 
 .availability-toggle.available{
     background-color: green;
-    border: 1px solid black;
 }
 
-.card-column .two ul{
+.availability-toggle.unavailable{
+    background-color: red;
+}
+
+.card-column.two ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
+    align-self: center;
 }

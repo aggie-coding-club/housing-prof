@@ -1,21 +1,21 @@
 import "./Listing.css"
 
-export default function Listing(listing) {
+export default function Listing(props) {
 
   return (
     <div className="card-container">
         <div className="card-column one">
-          <h3>{listing.complex}</h3>
-          <div className={listing.available ? "availability-toggle available" : "availability-toggle unavailable"}>
-            Available
+          <h3>{props.complex}</h3>
+          <div className={props.available ? "availability-toggle available" : "availability-toggle unavailable"}>
+            {props.available ? "Available" : "Unavailable"}
           </div>
         </div>
 
         <div className="card-column two">
           <ul>
-            <li>${listing.price}/month</li>
-            <li>{listing.beds} bedrooms</li>
-            <li>{listing.proximity} mi. from campus</li>
+            <li>${props.price}/month</li>
+            <li>{props.beds} bedrooms</li>
+            <li>{props.proximity} mi. from campus</li>
           </ul>
         </div>
     </div>
