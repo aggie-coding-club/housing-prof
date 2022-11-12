@@ -8,6 +8,8 @@ export default function Listing(props) {
           <h3>{props.complex}</h3>
         </div>
 
+        <img src={props.imageURL}></img>
+
         <div className="card-column two">
 
           <ul>

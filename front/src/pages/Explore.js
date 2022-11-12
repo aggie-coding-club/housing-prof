@@ -15,7 +15,7 @@ export default function Explore() {
             available: true,
             complex: "Park West",
             address: "503 George Bush Dr W",
-            imageURL: "www.parkwest.com",
+            imageURL: "https://via.placeholder.com/150",
         },
         {
             id: 1,
