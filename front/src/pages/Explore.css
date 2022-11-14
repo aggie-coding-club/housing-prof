@@ -17,7 +17,6 @@
   background-color: #A9A9A9;
   flex-wrap: wrap;
   align-self: flex-start;
-  /* grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); */
   gap: 25px;
 }
 

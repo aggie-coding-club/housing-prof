@@ -1,17 +1,19 @@
 import "./Listing.css"
+import { AiOutlineCheckCircle, AiOutlineCloseCircle} from "react-icons/ai";
 
 export default function Listing(props) {
 
   return (
     <div className="card-container">
+        
+        
         <div className="card-column one">
-          <h3>{props.complex}</h3>
+          <img src={props.imageURL}></img>
         </div>
 
-        <img src={props.imageURL}></img>
-
         <div className="card-column two">
-
+          <h3>{props.complex}</h3>
+          
           <ul>
             <li>${props.price}/month</li>
             <li>{props.beds} bedrooms</li>
@@ -19,7 +21,8 @@ export default function Listing(props) {
           </ul>
 
           <div className={props.available ? "availability-toggle available" : "availability-toggle unavailable"}>
-            {props.available ? "Available" : "Unavailable"}
+             {props.available ? <AiOutlineCheckCircle /> : <AiOutlineCloseCircle />}
+             {props.available ? "Available" : "Unavailable"}
           </div>
 
         </div>

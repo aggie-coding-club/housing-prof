@@ -7,7 +7,6 @@ export default function Explore() {
 
     const listings = [
         {
-            id: 0,
             price: 600,
             beds: 4,
             proximity: 2.1,
@@ -18,7 +17,6 @@ export default function Explore() {
             imageURL: "https://via.placeholder.com/150",
         },
         {
-            id: 1,
             price: 750,
             beds: 3,
             proximity: 1.2,
@@ -26,10 +24,9 @@ export default function Explore() {
             available: false,
             complex: "The Republic",
             address: "123 Hullaballo Ave",
-            imageURL: "www.republic.com",
+            imageURL: "https://via.placeholder.com/200x150",
         },
         {
-            id: 2,
             price: 450,
             beds: 1,
             proximity: 0.1,
@@ -37,7 +34,7 @@ export default function Explore() {
             available: true,
             complex: "Hart Hall",
             address: "24 RELLIS Way",
-            imageURL: "www.tamuhousing.com",
+            imageURL: "https://via.placeholder.com/175x150",
         },
     ]
 

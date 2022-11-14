@@ -9,33 +9,47 @@
 }
 
 .card-column{
-    border: 1px solid black;
-    padding: 5px;
-    margin: 10px;
+    /* border: 1px solid black; */
+    padding: 0px;
+    margin: 5px;
+}
+
+.card-column.one{
+    align-self: center;
+    justify-self: center;
+    align-content: center;
 }
 
 .card-column.two {
-    align-self: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.card-column.two h3 {
+    margin: 5px 0px;
 }
 
 .card-column.two ul{
     list-style-type: none;
-    margin: 0;
+    margin: 15px 0px;
     padding: 0;
 }
 
 .availability-toggle{
+    display: flex;
     padding: 5px;
     margin: 5px;
     border: 1px solid black;
-    align-self: center;
+    border-radius: 5px;
+    align-content: center;
+    justify-content: center;
 }
 
 .availability-toggle.available{
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.5);
 }
 
 .availability-toggle.unavailable{
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.5);
 }
 
