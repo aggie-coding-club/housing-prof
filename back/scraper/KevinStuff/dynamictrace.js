@@ -1,7 +1,7 @@
 // imports
 var fs = require('fs'); // file writer
 
-var root = "hhttp://www.the2818life.com/floor-plans"; 
+var root = "http://www.the2818life.com/floor-plans"; 
 
 const puppeteer = require('puppeteer');
 
