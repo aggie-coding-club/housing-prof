@@ -1,5 +1,6 @@
 import "./Listing.css"
 import { AiOutlineCheckCircle, AiOutlineCloseCircle} from "react-icons/ai";
+import { BsBookmark } from "react-icons/bs";
 
 export default function Listing(props) {
 
@@ -8,7 +9,7 @@ export default function Listing(props) {
         
         
         <div className="card-column one">
-          <img src={props.imageURL}></img>
+          <img src={props.imageURL} alt="Thumbnail for listing"></img>
         </div>
 
         <div className="card-column two">
@@ -20,10 +21,17 @@ export default function Listing(props) {
             <li>{props.proximity} mi. from campus</li>
           </ul>
 
-          <div className={props.available ? "availability-toggle available" : "availability-toggle unavailable"}>
-             {props.available ? <AiOutlineCheckCircle /> : <AiOutlineCloseCircle />}
-             {props.available ? "Available" : "Unavailable"}
+          <div className="toggles">
+            <div className={props.available ? "availability available" : "availability unavailable"}>
+              {props.available ? <AiOutlineCheckCircle /> : <AiOutlineCloseCircle />}
+              {props.available ? "Available" : "Unavailable"}
+            </div>
+            <div className="bookmark-icon">
+              <BsBookmark />
+            </div>
           </div>
+
+          
 
         </div>
     </div>

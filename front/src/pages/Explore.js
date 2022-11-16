@@ -22,7 +22,7 @@ export default function Explore() {
             proximity: 1.2,
             area: 1750,
             available: false,
-            complex: "The Republic",
+            complex: "The Retreat",
             address: "123 Hullaballo Ave",
             imageURL: "https://via.placeholder.com/200x150",
         },

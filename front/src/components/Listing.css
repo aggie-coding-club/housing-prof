@@ -35,7 +35,12 @@
     padding: 0;
 }
 
-.availability-toggle{
+.toggles {
+    display: flex;
+    justify-content: space-around;
+}
+
+.availability{
     display: flex;
     padding: 5px;
     margin: 5px;
@@ -45,11 +50,17 @@
     justify-content: center;
 }
 
-.availability-toggle.available{
+.availability.available{
     background-color: rgba(0, 128, 0, 0.5);
 }
 
-.availability-toggle.unavailable{
+.availability.unavailable{
     background-color: rgba(255, 0, 0, 0.5);
 }
 
+.bookmark-icon{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-self: center;
+}
