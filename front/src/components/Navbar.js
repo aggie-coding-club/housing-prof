@@ -1,12 +1,18 @@
 import React from "react";
 import { Link, useResolvedPath, useMatch } from "react-router-dom";
 import "./Navbar.css";
+import { FaHome } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 
 export default function Navbar() {
     return (
         <nav className="nav">
-            <Link to="/" className="site-title">Housing Prof</Link>
+            <Link to="/" className="site-title"><FaHome />Housing Prof</Link>
             <ul>
+                <CustomLink to="/explore">Explore</CustomLink>
+                <CustomLink to="/bookmarks">Bookmarks</CustomLink>
+                <CustomLink to="/my-listings">My Listings</CustomLink>
+                <CustomLink to="/profile" id="profile"><CgProfile className="profile"/></CustomLink>
             </ul>
         </nav>
     );

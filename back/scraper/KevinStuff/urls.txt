@@ -1,0 +1,34 @@
+Working
+
+https://www.riseatnorthgate.com/floorplans/
+https://stackstudentliving.com/floor-plans/#floorplans-gray-wrap/
+https://aspirecollegestation.prospectportal.com/college-station/aspire-college-station/student
+
+https://www.northpoint-crossing.com/apartments/4-bedroom/d2/ - basically all northpoint crossing floor plan links
+https://www.northpoint-crossing.com/apartments/4-bedroom/d3/
+
+https://live12north.com/floor-plans/
+https://www.parkwestlife.com/college-station/park-west/student/
+https://revstudentliving.com/floor-plans/
+https://thestandardcollegestation.landmark-properties.com/
+https://thejunctionatcollegestation.com/
+https://www.hudsontrailsapts.com/
+https://www.cherrystreetapts.com/college-station/cherry-street/student/
+https://www.thehudsonnorthgate.com/college-station/hudson/student/
+https://www.gatewaycollegestation.com/college-station-tx-apartments/gateway-at-college-station/student/
+https://www.eastgatebcs.com/
+https://www.mycasadelsolapts.com/
+https://pearlapt.com/
+https://www.towerparkapts.com/
+
+Puppeteer Required
+
+https://www.americancampus.com/student-apartments/tx/college-station/u-centre-at-northgate#floor-plans
+
+Not Working
+
+https://www.zillow.com/homes/for_rent/
+https://www.apartments.com/college-station-tx/
+http://www.the2818life.com/floor-plans
+https://www.100parkliving.com/floorplans
+https://www.vintageatcollegestation.com/floor-plans/
