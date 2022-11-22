@@ -1,0 +1,26 @@
+.slider-container {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex: 1;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    background-color: #a9a9a9;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.prev-arrow {
+    position: absolute;
+    left: 5%;
+}
+
+.next-arrow {
+    position: absolute;
+    right: 5%;
+}

@@ -1,143 +1,20 @@
-.atr4, .atr5, .atr6, .atr7 {
-    border: 1px solid black;
-    width: 200px;
-    height: 100px;
-    border-radius: 25px;
-
-}
-
-.atr2 {
-    border: 1px solid black;
-    width: 400px;
-    height: 250px;
-    text-align: center;
-    grid-column-start: 2;
-    grid-column-end: 4;
-    grid-row-start: 5;
-    grid-row-end: 7;
-    border-radius: 25px;
-
-
-}
-
-.bookmark {
-    border: 1px solid black;
-    width: 100px;
-    height: 100px;
-    border-radius: 25px;
-    grid-column-start: 4;
-    grid-column-end: 5;
-    grid-row-start: 5;
-    grid-row-end: 6;
-}
-
-.contact {
-    border: 1px solid black;
-    width: 100px;
-    height:100px;
-    border-radius: 25px;
-    grid-column-start: 4;
-    grid-column-end: 5;
-    grid-row-start: 6;
-    grid-row-end: 7;
-
-}
-
-.atr3 {
-    border: 1px solid black;
-    width: 400px;
-    height: 250px;
-    text-align: center;
-    grid-column-start: 5;
-    grid-column-end: 7;
-    grid-row-start: 5;
-    grid-row-end: 7;
-    border-radius: 25px;
-
-}
-
-.atr4 {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 7;
-    grid-row-end: 8;
-}
-
-.atr5 {
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 7;
-    grid-row-end: 8;
-
-}
-
-.atr6 {
-    grid-column-start: 5;
-    grid-column-end: 6;
-    grid-row-start: 7;
-    grid-row-end: 8;
-}
-
-.atr7 {
-    grid-column-start: 6;
-    grid-column-end: 7;
-    grid-row-start: 7;
-    grid-row-end: 8;
-}
-
-
-.attributes {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 10px;
-    padding: 10px;
-    justify-items: center;
-    overflow-x: hidden;
-}
-
-.atr1 {
+.listing-page-container {
+    flex: 1;
+    width: 100%;
+    max-width: 1100px;
     display: flex;
-    width: 1200px;
-    height: 500px;
-    border: 1px solid black;
-    border-radius: 25px;
-    grid-column-start: 1;
-    grid-column-end: 9;
-    grid-row-start: 1;
-    grid-row-end: 5;
-    text-align: center;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    justify-content: start;
+    padding: 40px 0;
 }
 
-.atr8 {
-    width: 800px;
-    height: 100px;
-    border: 1px solid black;
-    grid-column-start: 2;
-    grid-column-end: 7;
-    grid-row-start: -2;
-    grid-row-end: -1;
+.image-slider {
+    width: 80%;
+    height: 25vh;
+    background-color: #a9a9a9;
+    border-radius: 25px;
+    max-width: 600px;
 }
 
-.nextButton {
-    height: 300px;
-    border-radius: 20px 0px 0px 20px;
-}
 
-.prevButton {
-    height: 300px;
-    border-radius: 0px 20px 20px 0px;
-    
-}
-
-.actionButtonNext {
-    height: 400px;
-    border-radius: 20px 0px 0px 20px;
-}
-
-.actionButtonPrev {
-    height: 400px;
-    border-radius: 0px 20px 20px 0px;
-}
