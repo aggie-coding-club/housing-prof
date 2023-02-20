@@ -20,15 +20,12 @@ https://www.eastgatebcs.com/
 https://www.mycasadelsolapts.com/
 https://pearlapt.com/
 https://www.towerparkapts.com/
-
-Puppeteer Required
-
-https://www.americancampus.com/student-apartments/tx/college-station/u-centre-at-northgate#floor-plans
+https://www.apartments.com/college-station-tx/?bb=ru0nkg-1lJz4hwgpC
+https://www.americancampus.com/student-apartments/tx/college-station/u-centre-at-northgate/floor-plans#/detail/706-4bed-4bathapartmenta-fall2023_fullterm_8_23-7_24
+https://www.100parkliving.com/floorplans
 
 Not Working
 
-https://www.zillow.com/homes/for_rent/
-https://www.apartments.com/college-station-tx/
-http://www.the2818life.com/floor-plans
-https://www.100parkliving.com/floorplans
-https://www.vintageatcollegestation.com/floor-plans/
+https://www.zillow.com/homes/for_rent/ - needs to manually search for homes
+http://www.the2818life.com/floor-plans - nested html
+https://www.vintageatcollegestation.com/floor-plans/ - price is not contained within a class
