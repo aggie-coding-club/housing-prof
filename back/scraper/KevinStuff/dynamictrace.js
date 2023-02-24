@@ -5,6 +5,13 @@ const robotsParser = require('robots-parser');
 
 var url = "https://www.americancampus.com/student-apartments/tx/college-station/u-centre-at-northgate/floor-plans#/detail/706-4bed-4bathapartmenta-fall2023_fullterm_8_23-7_24"; 
 
+function writeFile(data) {
+  fs.writeFile ("data.json", JSON.stringify(data), function(err) {
+      if (err) throw err;
+      }
+  );
+}
+
 async function isNoIndex(page) {
   const metaTags = await page.$$('meta');
   for (const meta of metaTags) {
@@ -46,8 +53,17 @@ async function scrapeHousingPrices() {
 
   const prices = await page.$$eval('div.detail-footerCost--reduced span', prices => prices.map(price => price.textContent));
   const rentLink = await page.$$eval('div.detail-footerApply a.detail-footerApplyLink', rentLink => rentLink.map(link => link.href));
-  console.log(prices);
-  console.log(rentLink);
+
+  var today = new Date();
+  var timestamp = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + ' ' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+  var json = {
+    prices: prices,
+    rent_link: rentLink,
+    time : timestamp
+  };
+
+  writeFile(json);
 
   await browser.close();
 }
