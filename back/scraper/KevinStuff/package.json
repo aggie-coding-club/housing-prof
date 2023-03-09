@@ -4,7 +4,7 @@
     "cheerio": "^1.0.0-rc.12",
     "nodemon": "^2.0.20",
     "phantom": "^6.3.0",
-    "puppeteer": "^19.7.1",
-    "robots-parser": "^3.0.0"
+    "puppeteer": "^19.7.3",
+    "robots-parser": "^3.0.1"
   }
 }

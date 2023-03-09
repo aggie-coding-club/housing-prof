@@ -1,7 +1,5 @@
 /*  This boilerplating is for a single website and is designed to scrape 
     one or more components specifically for that site
-
-    Co-written by Chat-GBT
 */ 
 
 // imports
@@ -9,11 +7,11 @@ const fs = require('fs'); // file writer
 const puppeteer = require('puppeteer');
 const robotsParser = require('robots-parser');
 
-var url = "insert url here"; 
+var url = "https://aspirecollegestation.prospectportal.com/college-station/aspire-college-station/student"; 
 
 // DON'T CHANGE
 function writeFile(data) {
-  fs.writeFile ("data.json", JSON.stringify(data), function(err) {
+  fs.writeFile ("data.json", JSON.stringify(data, null, 2), function(err) {
       if (err) throw err;
       }
   );
@@ -51,7 +49,7 @@ async function scrapeHousingPrices() {
     }
 
     // Opens page
-    const browser = await puppeteer.launch({headless : false}); // set headless to true to remove browser
+    const browser = await puppeteer.launch({headless : false});
     const page = await browser.newPage();
 
     // Parses noIndex, DO NOT TOUCH
@@ -66,19 +64,23 @@ async function scrapeHousingPrices() {
 
     // Edit code here:
 
+    const prices = await page.$$eval('.rent-price', prices => prices.map(price => price.textContent)); // Class
+    const links = await page.$$eval('.primary-action.fp-availability.btn', links => links.map(link => link.href)); // Element with multiple classes
+    const beds = await page.$$eval('.fp-col-text', beds => beds.map(bed => bed.textContent));
+    const images = await page.$$eval('img', images => images.map(image => image.src)); // "img" is the name of the element, "img.class" would get the image's class
+    const floorPlans = await page.$$eval('#floorplans-1', floorPlans => floorPlans.map(floorPlan => floorPlan.innerHTML)); // # gets the id
 
-
-
-
-
-    
-    
     // Get the timestamp of when it was scraped, DO NOT TOUCH
     var today = new Date();
     var timestamp = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + ' ' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
     // Write json out to file, add elements as they are scraped
     var json = {
+        prices: prices,
+        links: links,
+        beds: beds,
+        images: images,
+        floorPlans: floorPlans,
         time : timestamp
     };
 
