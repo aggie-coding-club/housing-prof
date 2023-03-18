@@ -67,7 +67,17 @@ async function scrapeHousingPrices() {
     const linkSet = new Set(); // prevents duplicates
     const links = await page.$$eval('a', links => {
         return links
-            .filter(link => link.textContent.toLowerCase() === "apply now" || link.textContent.toLowerCase() === "apply today" || link.textContent.toLowerCase() === "apply online")
+            .filter(link => {
+                const linkText = link.textContent.toLowerCase();
+                const hasApplyNow = linkText.includes('apply now') || linkText.includes('apply today') || linkText.includes("apply online");
+
+                const hasChildApplyNow = Array.from(link.children).some(child => {
+                    const childLinkText = child.textContent.toLowerCase();
+                    return childLinkText.includes('apply now') || childLinkText.includes('apply today') || childLinkText.includes("apply online");
+                }); // if link is in child
+
+                return (hasApplyNow || hasChildApplyNow) && link.href;
+            })
             .map(link => {
                 if (link.href.at(0) == '/') {
                     return url+link.href.substring(1, link.href.length); // if the link starts with a backslash
