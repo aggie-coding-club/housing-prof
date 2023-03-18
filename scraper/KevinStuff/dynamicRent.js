@@ -7,7 +7,7 @@ const fs = require('fs'); // file writer
 const puppeteer = require('puppeteer');
 const robotsParser = require('robots-parser');
 
-var url = "https://aspirecollegestation.prospectportal.com/college-station/aspire-college-station/student"; 
+var url = "https://aspirecollegestation.prospectportal.com/college-station/aspire-college-station/student/"; 
 
 // DON'T CHANGE
 function writeFile(data) {
@@ -69,6 +69,9 @@ async function scrapeHousingPrices() {
         return links
             .filter(link => link.textContent.toLowerCase() === "apply now" || link.textContent.toLowerCase() === "apply today" || link.textContent.toLowerCase() === "apply online")
             .map(link => {
+                if (link.href.at(0) == '/') {
+                    return url+link.href.substring(1, link.href.length); // if the link starts with a backslash
+                }
                 return link.href;
             });
     }); // If there is a link

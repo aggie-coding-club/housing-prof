@@ -2,7 +2,7 @@ Working
 
 https://www.riseatnorthgate.com/floorplans/
 https://stackstudentliving.com/floor-plans/#floorplans-gray-wrap/
-https://aspirecollegestation.prospectportal.com/college-station/aspire-college-station/student
+https://aspirecollegestation.prospectportal.com/college-station/aspire-college-station/student/
 
 https://www.northpoint-crossing.com/apartments/4-bedroom/d2/ - basically all northpoint crossing floor plan links
 https://www.northpoint-crossing.com/apartments/4-bedroom/d3/
@@ -20,10 +20,10 @@ https://www.eastgatebcs.com/
 https://www.mycasadelsolapts.com/
 https://pearlapt.com/
 https://www.towerparkapts.com/
-https://www.apartments.com/college-station-tx/?bb=ru0nkg-1lJz4hwgpC
-https://www.americancampus.com/student-apartments/tx/college-station/u-centre-at-northgate/floor-plans#/detail/706-4bed-4bathapartmenta-fall2023_fullterm_8_23-7_24
-https://www.100parkliving.com/floorplans
-http://www.the2818life.com/floor-plans
+https://www.apartments.com/college-station-tx/?bb=ru0nkg-1lJz4hwgpC/
+https://www.americancampus.com/student-apartments/tx/college-station/u-centre-at-northgate/floor-plans#/detail/706-4bed-4bathapartmenta-fall2023_fullterm_8_23-7_24/
+https://www.100parkliving.com/floorplans/
+http://www.the2818life.com/floor-plans/
 
 Not Working
 
