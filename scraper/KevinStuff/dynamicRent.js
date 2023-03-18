@@ -7,7 +7,7 @@ const fs = require('fs'); // file writer
 const puppeteer = require('puppeteer');
 const robotsParser = require('robots-parser');
 
-var url = "https://aspirecollegestation.prospectportal.com/college-station/aspire-college-station/student/"; 
+var url = "https://warehouseandfactory.com/floor-plans/"; 
 
 // DON'T CHANGE
 function writeFile(data) {
@@ -49,7 +49,7 @@ async function scrapeHousingPrices() {
     }
 
     // Opens page
-    const browser = await puppeteer.launch({headless : false});
+    const browser = await puppeteer.launch({headless : true});
     const page = await browser.newPage();
 
     // Parses noIndex, DO NOT TOUCH
@@ -69,11 +69,11 @@ async function scrapeHousingPrices() {
         return links
             .filter(link => {
                 const linkText = link.textContent.toLowerCase();
-                const hasApplyNow = linkText.includes('apply now') || linkText.includes('apply today') || linkText.includes("apply online");
+                const hasApplyNow = linkText.includes('apply now') || linkText.includes('apply today') || linkText.includes("apply online") || linkText.includes("lease now") || linkText.includes("apply");
 
                 const hasChildApplyNow = Array.from(link.children).some(child => {
                     const childLinkText = child.textContent.toLowerCase();
-                    return childLinkText.includes('apply now') || childLinkText.includes('apply today') || childLinkText.includes("apply online");
+                    return childLinkText.includes('apply now') || childLinkText.includes('apply today') || childLinkText.includes("apply online") || linkText.includes("lease now") || linkText.includes("apply");
                 }); // if link is in child
 
                 return (hasApplyNow || hasChildApplyNow) && link.href;
