@@ -64,14 +64,24 @@ async function scrapeHousingPrices() {
     // opens page up
     await page.goto(url, { waitUntil: 'networkidle2' });
 
-    // Edit code here:
+    // Get into the floor plans page
 
+    // For each floor plan
 
+        // For each room type
 
+            // Get price data
+            
+            // Get rent link
+            
+            // Get image links
 
+            // Get square feet
 
+            // Get address
 
-    
+            // Get bedrooms
+            
     
     // Get the timestamp of when it was scraped, DO NOT TOUCH
     var today = new Date();
