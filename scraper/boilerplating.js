@@ -68,7 +68,7 @@ async function scrapeHousingPrices() {
 
 
 
-
+    
 
 
     
