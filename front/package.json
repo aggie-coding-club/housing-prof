@@ -9,8 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/server": "^11.10.0",
+    "@mantine/core": "^6.0.4",
+    "@mantine/ds": "^6.0.4",
+    "@mantine/hooks": "^6.0.4",
+    "@mantine/next": "^6.0.4",
+    "install": "^0.13.0",
     "next": "13.2.4",
+    "npm": "^9.6.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "tabler-icons-react": "^1.56.0"
   }
 }
