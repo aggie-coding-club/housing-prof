@@ -7,3 +7,5 @@ const Bookmarks = () => {
 		</div>
 	);
 };
+
+export default Bookmarks;
