@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import { ThemeProvider } from 'next-themes';
 import NavBar from '../components/NavBar';
-import ThemeToggle from '../components/ThemeToggle';
+import Footer from '../components/Footer';
 
 export default function App({ Component, pageProps }) {
 	return (
@@ -9,7 +9,6 @@ export default function App({ Component, pageProps }) {
 			<ThemeProvider>
 				<NavBar />
 				<Component {...pageProps} />
-				<ThemeToggle />
 			</ThemeProvider>
 		</>
 	);

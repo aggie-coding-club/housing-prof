@@ -78,8 +78,8 @@ const Collapse = ({ isOpen, children }) => {
 			aria-hidden={!isOpen}
 			style={inlineStyle}
 			className={`${
-				isOpen ? 'border' : 'border-white'
-			} flex-col px-2 py-0.5 shadow-lg rounded-md transition-all ease mt-2 text-black overflow-hidden duration-300`}
+				isOpen ? 'border shadow-lg' : 'border-white'
+			} flex-col px-2 py-2 rounded-md transition-all ease mt-2 text-black overflow-hidden duration-300`}
 		>
 			{children}
 		</div>
