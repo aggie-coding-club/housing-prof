@@ -8,6 +8,7 @@
     "server": "nodemon backend/server.js",
     "client": "cd front && npm run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "postinstall": "cd front && npm install",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "Brad Traversy",
