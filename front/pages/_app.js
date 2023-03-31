@@ -1,19 +1,16 @@
 import '@/styles/globals.css';
-import { MantineProvider } from '@mantine/core';
+import { ThemeProvider } from 'next-themes';
+import NavBar from '../components/NavBar';
+import ThemeToggle from '../components/ThemeToggle';
 
 export default function App({ Component, pageProps }) {
 	return (
 		<>
-			<MantineProvider
-				withGlobalStyles
-				withNormalizeCSS
-				theme={{
-					/** Put your mantine theme override here */
-					colorScheme: 'light',
-				}}
-			>
+			<ThemeProvider>
+				<NavBar />
 				<Component {...pageProps} />
-			</MantineProvider>
+				<ThemeToggle />
+			</ThemeProvider>
 		</>
 	);
 }
