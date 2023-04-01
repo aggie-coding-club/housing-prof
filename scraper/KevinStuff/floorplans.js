@@ -1,5 +1,7 @@
 /*  This boilerplating is for a single website and is designed to scrape 
     one or more components specifically for that site
+
+    Co-written by Chat-GBT
 */ 
 
 // imports
@@ -7,11 +9,11 @@ const fs = require('fs'); // file writer
 const puppeteer = require('puppeteer');
 const robotsParser = require('robots-parser');
 
-var url = "https://stackstudentliving.com/floor-plans/#floorplans-gray-wrap/"; 
+var url = "https://thestandardcollegestation.landmark-properties.com/floorplans/"; 
 
 // DON'T CHANGE
 function writeFile(data) {
-  fs.writeFile ("data.json", JSON.stringify(data, null, 2), function(err) {
+  fs.writeFile ("data.json", JSON.stringify(data), function(err) {
       if (err) throw err;
       }
   );
@@ -49,7 +51,7 @@ async function scrapeHousingPrices() {
     }
 
     // Opens page
-    const browser = await puppeteer.launch({headless : true});
+    const browser = await puppeteer.launch({headless : false}); // set headless to true to remove browser
     const page = await browser.newPage();
 
     // Parses noIndex, DO NOT TOUCH
@@ -61,43 +63,22 @@ async function scrapeHousingPrices() {
 
     // opens page up
     await page.goto(url, { waitUntil: 'networkidle2' });
+    // const images = await page.$$eval('img', images => images.map(image => image.src));
 
-    // Edit code here:
+    const floorplan = await page.$('.fp-block');
+    const image = await floorplan.$eval('img', img => img.src);
 
-    const linkSet = new Set(); // prevents duplicates
-    const links = await page.$$eval('a', links => {
-        return links
-            .filter(link => {
-                const linkText = link.textContent.toLowerCase();
-                const hasApplyNow = linkText.includes('apply now') || linkText.includes('apply today') || linkText.includes("apply online") || linkText.includes("lease now") || linkText.includes("apply");
+    console.log(image);
 
-                const hasChildApplyNow = Array.from(link.children).some(child => {
-                    const childLinkText = child.textContent.toLowerCase();
-                    return childLinkText.includes('apply now') || childLinkText.includes('apply today') || childLinkText.includes("apply online") || linkText.includes("lease now") || linkText.includes("apply");
-                }); // if link is in child
 
-                return (hasApplyNow || hasChildApplyNow) && link.href;
-            })
-            .map(link => {
-                if (link.href.at(0) == '/') {
-                    return url+link.href.substring(1, link.href.length); // if the link starts with a backslash
-                }
-                return link.href;
-            });
-    }); // If there is a link
-
-    links.forEach(link => { linkSet.add(link); });
     
-    // const href = link.getAttribute('href');
-    // return url.resolve(page.url(), href);
-
+    
     // Get the timestamp of when it was scraped, DO NOT TOUCH
     var today = new Date();
     var timestamp = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + ' ' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
     // Write json out to file, add elements as they are scraped
     var json = {
-        links: Array.from(linkSet),
         time : timestamp
     };
 
