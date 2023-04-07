@@ -39,18 +39,22 @@ async function isNoIndex(page) {
     return false;
 }
 
-async function getParents(elementHandle) {
-    const parents = [];
-    let currentElement = elementHandle;
-    while (currentElement && (await currentElement.evaluate(node => node.tagName) != "BODY")) {
-      const parentElement = await currentElement.getProperty('parentElement');
-      if (!parentElement) {
-        break;
-      }
-      parents.push(parentElement);
-      currentElement = parentElement;
+async function getParents(elementHandles) {
+    const allParents = []
+    for (const elementHandle of elementHandles) {
+        const parents = [];
+        let currentElement = elementHandle;
+        while (currentElement && (await currentElement.evaluate(node => node.tagName) != "BODY")) {
+        const parentElement = await currentElement.getProperty('parentElement');
+        if (!parentElement) {
+            break;
+        }
+        parents.push(parentElement);
+        currentElement = parentElement;
+        }
+        allParents.push(parents);
     }
-    return parents;
+    return allParents;
 }
 
 async function getRentLinks(allLinks) {
@@ -111,12 +115,9 @@ async function scrapeHousingPrices() {
     console.log("\n\n");
     //console.log(images[4]);
 
-    const rentLinkParents = [];
-    for (const link of rentLinks) {
-        rentLinkParents.push(await getParents(link));
-    }
-    console.log(rentLinkParents);
+    const rentLinkParents = await getParents(rentLinks);
 
+    console.log(rentLinkParents);
     
     
     
