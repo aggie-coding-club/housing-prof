@@ -39,6 +39,39 @@ async function isNoIndex(page) {
     return false;
 }
 
+async function getParents(elementHandle) {
+    const parents = [];
+    let currentElement = elementHandle;
+    while (currentElement && (await currentElement.evaluate(node => node.tagName) != "BODY")) {
+      const parentElement = await currentElement.getProperty('parentElement');
+      if (!parentElement) {
+        break;
+      }
+      parents.push(parentElement);
+      currentElement = parentElement;
+    }
+    return parents;
+}
+
+async function getRentLinks(allLinks) {
+    const rentLinks = [];
+    for (const link of allLinks) {
+        const linkText = await link.evaluate(node => node.textContent.toLowerCase());
+        const hasApplyNow = linkText.includes("lease now") || linkText.includes("apply");
+
+        const hasChildApplyNow = await link.evaluate(node => {
+            return Array.from(node.children).some(child => {
+                const childLinkText = child.textContent.toLowerCase();
+                return childLinkText.includes("lease now") || childLinkText.includes("apply");
+            });
+        }); // if it has a child
+        if (hasApplyNow || hasChildApplyNow && link.href) {
+            rentLinks.push(link);
+        }
+    }
+    return rentLinks;
+}
+
 async function scrapeHousingPrices() {
     
     // Robots parsing, DO NOT TOUCH
@@ -63,35 +96,28 @@ async function scrapeHousingPrices() {
 
     // opens page up
     await page.goto(url, { waitUntil: 'networkidle2' });
-    // const images = await page.$$eval('img', images => images.map(image => image.src));
 
-    const floorplan = await page.$('.fp-block');
-    const image = await floorplan.$eval('img', img => img.src);
+    const images = await page.$$eval('img', images => images.map(img => img.parentElement.innerHTML));
 
-    const links = await page.$$eval('a', links => {
-        return links
-            .filter(link => {
-                const linkText = link.textContent.toLowerCase();
-                const hasApplyNow = linkText.includes("lease now") || linkText.includes("apply");
+    const rentLinks = await getRentLinks(await page.$$('a'));
 
-                const hasChildApplyNow = Array.from(link.children).some(child => {
-                    const childLinkText = child.textContent.toLowerCase();
-                    return childLinkText.includes("lease now") || childLinkText.includes("apply");
-                }); // if link is in child
-
-                return (hasApplyNow || hasChildApplyNow) && link.href;
-            })
-            .map(link => {
-                if (link.href.at(0) == '/') {
-                    return url+link.href.substring(1, link.href.length); // if the link starts with a backslash
-                }
-                return link.parentElement.innerHTML;
-            });
-    }); // If there is a link
+            // .map(link => {
+            //     if (link.href.at(0) == '/') {
+            //         return url+link.href.substring(1, link.href.length); // if the link starts with a backslash
+            //     }
+            //     return link;
+            // });
     
-    console.log(image);
-    console.log(links[1]);
+    console.log("\n\n");
+    //console.log(images[4]);
 
+    const rentLinkParents = [];
+    for (const link of rentLinks) {
+        rentLinkParents.push(await getParents(link));
+    }
+    console.log(rentLinkParents);
+
+    
     
     
     // Get the timestamp of when it was scraped, DO NOT TOUCH
