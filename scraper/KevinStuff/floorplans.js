@@ -1,9 +1,3 @@
-/*  This boilerplating is for a single website and is designed to scrape 
-    one or more components specifically for that site
-
-    Co-written by Chat-GBT
-*/ 
-
 // imports
 const fs = require('fs'); // file writer
 const puppeteer = require('puppeteer');
@@ -117,7 +111,6 @@ async function scrapeHousingPrices() {
 
     const rentLinkParents = await getParents(rentLinks);
 
-    console.log(rentLinkParents);
     
     
     
