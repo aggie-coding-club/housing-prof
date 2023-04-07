@@ -63,8 +63,7 @@ async function scrapeHousingPrices() {
     await page.goto(url, { waitUntil: 'networkidle2' });
 
     // Edit code here:
-
-    const linkSet = new Set(); // prevents duplicates
+    
     const links = await page.$$eval('a', links => {
         return links
             .filter(link => {
@@ -85,8 +84,6 @@ async function scrapeHousingPrices() {
                 return link.href;
             });
     }); // If there is a link
-
-    links.forEach(link => { linkSet.add(link); });
     
     // const href = link.getAttribute('href');
     // return url.resolve(page.url(), href);
@@ -97,7 +94,7 @@ async function scrapeHousingPrices() {
 
     // Write json out to file, add elements as they are scraped
     var json = {
-        links: Array.from(linkSet),
+        links: links,
         time : timestamp
     };
 
