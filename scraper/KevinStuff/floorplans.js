@@ -68,8 +68,32 @@ async function scrapeHousingPrices() {
     const floorplan = await page.$('.fp-block');
     const image = await floorplan.$eval('img', img => img.src);
 
-    console.log(image);
+    const linkSet = new Set(); // prevents duplicates
+    const links = await page.$$eval('a', links => {
+        return links
+            .filter(link => {
+                const linkText = link.textContent.toLowerCase();
+                const hasApplyNow = linkText.includes("lease now") || linkText.includes("apply");
 
+                const hasChildApplyNow = Array.from(link.children).some(child => {
+                    const childLinkText = child.textContent.toLowerCase();
+                    return childLinkText.includes("lease now") || childLinkText.includes("apply");
+                }); // if link is in child
+
+                return (hasApplyNow || hasChildApplyNow) && link.href;
+            })
+            .map(link => {
+                if (link.href.at(0) == '/') {
+                    return url+link.href.substring(1, link.href.length); // if the link starts with a backslash
+                }
+                return link.href;
+            });
+    }); // If there is a link
+
+    links.forEach(link => { linkSet.add(link); });
+    
+    console.log(image);
+    console.log(links[0]);
 
     
     

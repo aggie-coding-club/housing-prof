@@ -69,11 +69,11 @@ async function scrapeHousingPrices() {
         return links
             .filter(link => {
                 const linkText = link.textContent.toLowerCase();
-                const hasApplyNow = linkText.includes('apply now') || linkText.includes('apply today') || linkText.includes("apply online") || linkText.includes("lease now") || linkText.includes("apply");
+                const hasApplyNow = linkText.includes("lease now") || linkText.includes("apply");
 
                 const hasChildApplyNow = Array.from(link.children).some(child => {
                     const childLinkText = child.textContent.toLowerCase();
-                    return childLinkText.includes('apply now') || childLinkText.includes('apply today') || childLinkText.includes("apply online") || linkText.includes("lease now") || linkText.includes("apply");
+                    return childLinkText.includes("lease now") || childLinkText.includes("apply");
                 }); // if link is in child
 
                 return (hasApplyNow || hasChildApplyNow) && link.href;
