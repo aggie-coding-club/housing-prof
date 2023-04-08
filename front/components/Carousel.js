@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import Image from 'next/image';
-import { Head } from 'next/document';
+import { useState, useContext } from 'react';
+import { Context } from '@/context/state.js';
 
 const ImageCarousel = (props) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const [context, setContext] = useContext(Context);
 
 	const prevSlide = () => {
 		const isFirstSlide = currentIndex === 0;
@@ -28,23 +28,29 @@ const ImageCarousel = (props) => {
 				style={{ backgroundImage: `url(${props.slides[currentIndex].url})` }}
 				className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
 			></div> */}
-				<Image
+				{/* <Image
 					src={props.slides[currentIndex].url}
 					priority
 					fill
 					cover
 					className="w-full h-full rounded-2xl duration-500 object-center object-cover transition-all"
-				/>
+				/> */}
+				{props.slides.length > 0 ? (
+					<img
+						src={props.slides[currentIndex].url}
+						className="w-full h-full rounded-2xl duration-500 object-center object-cover transition-all"
+					/>
+				) : (
+					<div className="w-full h-full rounded-2xl bg-center bg-cover duration-500"></div>
+				)}
 				{/* Left Arrow */}
-				<div className="absolute top-[50%] -translate-x-[50%] translate-y-[-50%] left-0 text-2xl rounded-full p-2 bg-white text-maroon-700 shadow-md cursor-pointer">
+				<div className="absolute top-[50%] -translate-x-[50%] translate-y-[-50%] left-0 text-2xl rounded-full p-2 bg-white hover:bg-gray-100 transition-all text-maroon-700 shadow-md cursor-pointer">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
 						viewBox="0 0 24 24"
-						strokeWidth={1.5}
 						onClick={prevSlide}
-						stroke="currentColor"
-						className="w-6 h-6"
+						className="w-6 h-6 stroke-[1.5] stroke-current"
 					>
 						<path
 							strokeLinecap="round"
@@ -54,7 +60,7 @@ const ImageCarousel = (props) => {
 					</svg>
 				</div>
 				{/* Right Arrow */}
-				<div className="absolute top-[50%] translate-x-[50%] translate-y-[-50%] right-0 text-2xl rounded-full p-2 bg-white text-maroon-700 shadow-md cursor-pointer">
+				<div className="absolute top-[50%] translate-x-[50%] translate-y-[-50%] right-0 text-2xl rounded-full p-2 bg-white hover:bg-gray-100 transition-all text-maroon-700 shadow-md cursor-pointer">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
@@ -72,7 +78,12 @@ const ImageCarousel = (props) => {
 					</svg>
 				</div>
 				{!props.listingLiked ? (
-					<div className="absolute left-5 bottom-[0] translate-y-[25%] text-2xl rounded-full p-2 bg-white text-maroon-700 shadow-md cursor-pointer">
+					<div
+						className={`absolute left-5 bottom-[0] translate-y-[25%] text-2xl rounded-full p-2 bg-white hover:bg-gray-100 transition-all text-maroon-700 shadow-md cursor-pointer ${
+							context.token ? '' : 'opacity-75 pointer-events-none'
+						}`}
+						onClick={context.token ? props.likeListing : () => {}}
+					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
@@ -89,7 +100,10 @@ const ImageCarousel = (props) => {
 						</svg>
 					</div>
 				) : (
-					<div className="absolute left-5 bottom-[0] translate-y-[25%] text-2xl rounded-full p-2 bg-white text-maroon-700 shadow-md cursor-pointer">
+					<div
+						className="absolute left-5 bottom-[0] translate-y-[25%] text-2xl rounded-full p-2 bg-white hover:bg-gray-100 transition-all text-maroon-700 shadow-md cursor-pointer"
+						onClick={props.unlikeListing}
+					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
@@ -104,7 +118,7 @@ const ImageCarousel = (props) => {
 						</svg>
 					</div>
 				)}
-				<div className="absolute left-5 bottom-[0] translate-x-[125%] translate-y-[25%] text-2xl rounded-full p-2 bg-white text-maroon-700 shadow-md cursor-pointer">
+				<div className="absolute left-5 bottom-[0] translate-x-[125%] translate-y-[25%] text-2xl rounded-full p-2 bg-white hover:bg-gray-100 transition-all text-maroon-700 shadow-md cursor-pointer">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
@@ -120,30 +134,37 @@ const ImageCarousel = (props) => {
 						/>
 					</svg>
 				</div>
-				<div className="absolute right-5 bottom-[0] -translate-x-[125%] translate-y-[25%] text-2xl rounded-full p-2 bg-white text-maroon-700 shadow-md cursor-pointer">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						strokeWidth={1.5}
-						stroke="currentColor"
-						className="w-6 h-6"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-						/>
-					</svg>
-				</div>
+				<a href={`mailto: ${props.email}`}>
+					<div className="absolute right-5 bottom-[0] -translate-x-[125%] translate-y-[25%] text-2xl rounded-full p-2 bg-white hover:bg-gray-100 transition-all text-maroon-700 shadow-md cursor-pointer">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							strokeWidth={1.5}
+							stroke="currentColor"
+							className="w-6 h-6"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+							/>
+						</svg>
+					</div>
+				</a>
 				<a
-					href={`https://www.google.com/maps/search/?api=1&query=${props.address.replace(
-						/ /g,
-						'+'
-					)}`}
+					href={`https://www.google.com/maps/search/?api=1&query=${
+						props.address.replace(/ /g, '+') +
+						'+' +
+						props.city.replace(/ /g, '+') +
+						'+' +
+						props.state +
+						'+' +
+						props.zip
+					}`}
 					target="_blank"
 				>
-					<div className="absolute right-5 bottom-[0] translate-x-[0%] translate-y-[25%] text-2xl rounded-full p-2 bg-white text-maroon-700 shadow-md cursor-pointer">
+					<div className="absolute right-5 bottom-[0] translate-x-[0%] translate-y-[25%] text-2xl rounded-full p-2 bg-white hover:bg-gray-100 transition-all text-maroon-700 shadow-md cursor-pointer">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"

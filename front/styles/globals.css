@@ -2,19 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  background-color: white;
+}
+
 body {
   margin: 0;
   min-height: -webkit-fill-available;
   font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--primary-text-color);
+  background-color: white;
+  color: black;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #__next {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  min-height: -webkit-fill-available;
+  height: -webkit-fill-available;
+  height: -moz-available;
+  width: 100%;
 }
 
 /* slider.css */

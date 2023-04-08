@@ -1,12 +1,4 @@
-import { useState } from 'react';
-
 const SearchBar = (props) => {
-	const [isOpen, setIsOpen] = useState(false);
-
-	const toggleDropdown = () => {
-		setIsOpen(!isOpen);
-	};
-
 	return (
 		<form className="w-full">
 			<label
@@ -38,11 +30,14 @@ const SearchBar = (props) => {
 					id="default-search"
 					class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-maroon-500 dark:focus:ring-maroon-500 dark:focus:border-maroon-500 focus:border-maroon-600 transition"
 					placeholder="Search Houses, Apartments, Condos, Townhomes, and more..."
+					value={props.search}
+					onChange={(e) => props.setSearch(e.target.value)}
 					required
 				/>
 				<button
 					type="submit"
 					class="text-white absolute right-2.5 bottom-2.5 bg-maroon-700 hover:bg-maroon-700 focus:ring-4 focus:outline-none focus:ring-maroon-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-maroon-600 dark:hover:bg-maroon-700 dark:focus:ring-maroon-700 transition"
+					onClick={props.handleSearch}
 				>
 					Search
 				</button>

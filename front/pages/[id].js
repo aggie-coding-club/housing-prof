@@ -1,53 +1,141 @@
 // Listings Page
 import Carousel from '@/components/Carousel';
 import Head from 'next/head';
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { Context } from '@/context/state.js';
 import { useRouter } from 'next/router';
 
 const Listings = () => {
-	const [idFound, setIdFound] = useState(true);
-	const [listingLiked, setListingLiked] = useState(false);
+	const [idFound, setIdFound] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [listingBookmarked, setListingBookmarked] = useState(false);
+	const [listing, setListing] = useState({
+		address: '',
+		city: '',
+		state: '',
+		zip: '',
+		price: 0,
+		bedrooms: 0,
+		bathrooms: 0,
+		sqft: 0,
+		description: '',
+		images: [],
+	});
+	const [context, setContext] = useContext(Context);
 	const router = useRouter();
 
-	const listing = {
-		address: '1234 Main St.',
-		city: 'College Station',
-		state: 'TX',
-		zip: '77840',
-		price: 100000,
-		bedrooms: 3,
-		bathrooms: 2,
-		sqft: 1500,
-		description: 'This is a test description',
-		images: [
-			{
-				url: '/testImage1.jpg',
-				alt: 'Image 1',
-			},
-			{
-				url: '/testImage2.jpg',
-				alt: 'Image 2',
-			},
-			{
-				url: '/testImage3.jpg',
-				alt: 'Image 3',
-			},
-			{
-				url: '/testImage4.jpg',
-				alt: 'Image 4',
-			},
-			{
-				url: '/testImage5.jpg',
-				alt: 'Image 5',
-			},
-		],
-	};
+	const { id } = router.query;
+
+	useEffect(() => {
+		if (id) {
+			const listing = fetch(
+				(process.env.NEXT_ENV === 'development'
+					? process.env.NEXT_BACK_API_URL_DEV
+					: process.env.NEXT_BACK_API_URL_PROD) + `/listing/${id}`,
+				{
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				}
+			);
+			listing.then((res) => {
+				if (res.status === 200) {
+					const body = res.json();
+					body.then((data) => {
+						setListing(data);
+						setIdFound(true);
+						setLoading(false);
+					});
+				} else {
+					setIdFound(false);
+					setLoading(false);
+				}
+			});
+			const bookmarked = fetch(
+				(process.env.NEXT_ENV === 'development'
+					? process.env.NEXT_BACK_API_URL_DEV
+					: process.env.NEXT_BACK_API_URL_PROD) + `/users/me/bookmarks`,
+				{
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${localStorage.getItem(
+							'housingprof_token'
+						)}`,
+					},
+				}
+			);
+			bookmarked.then((res) => {
+				if (res.status === 200) {
+					const body = res.json();
+					body.then((data) => {
+						console.log(data);
+						if (data.includes(id)) {
+							setListingBookmarked(true);
+						}
+					});
+				}
+			});
+		}
+	}, [id]);
 
 	const returnHome = () => {
 		router.push('/');
 	};
 
-	if (!idFound) {
+	const bookmarkListing = () => {
+		const bookmark = fetch(
+			(process.env.NEXT_ENV === 'development'
+				? process.env.NEXT_BACK_API_URL_DEV
+				: process.env.NEXT_BACK_API_URL_PROD) + `/users/me/bookmarks/add/${id}`,
+			{
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${localStorage.getItem('housingprof_token')}`,
+				},
+			}
+		);
+		bookmark.then((res) => {
+			if (res.status === 200) {
+				setListingBookmarked(true);
+			}
+		});
+	};
+
+	const unbookmarkListing = () => {
+		const unbookmark = fetch(
+			(process.env.NEXT_ENV === 'development'
+				? process.env.NEXT_BACK_API_URL_DEV
+				: process.env.NEXT_BACK_API_URL_PROD) +
+				`/users/me/bookmarks/remove/${id}`,
+			{
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${localStorage.getItem('housingprof_token')}`,
+				},
+			}
+		);
+		unbookmark.then((res) => {
+			if (res.status === 200) {
+				setListingBookmarked(false);
+			}
+		});
+	};
+
+	if (loading) {
+		return (
+			<>
+				<div className="flex flex-col text-start items-center h-full pt-6">
+					<h1 className="text-2xl">Loading...</h1>
+				</div>
+			</>
+		);
+	}
+
+	if (!idFound || !listing.address) {
 		return (
 			<>
 				<div className="flex flex-col text-start items-center h-full pt-6">
@@ -71,7 +159,13 @@ const Listings = () => {
 						<Carousel
 							slides={listing.images}
 							address={listing.address}
-							listingLiked={listingLiked}
+							city={listing.city}
+							state={listing.state}
+							zip={listing.zip}
+							listingLiked={listingBookmarked}
+							likeListing={bookmarkListing}
+							unlikeListing={unbookmarkListing}
+							email={listing.email}
 						/>
 					</div>
 				</div>
@@ -81,8 +175,11 @@ const Listings = () => {
 							${listing.price.toLocaleString()}
 						</p>
 						<div className="flex flex-row">
-							<p className="flex flex-row text-black items-center text-center text-sm">
-								{listing.bedrooms}
+							<p className="flex flex-row text-black items-center text-center text-sm ml-1">
+								{listing.propertyType.charAt(0).toUpperCase() +
+									listing.propertyType.slice(1) +
+									'   '}
+								|{'   ' + listing.bedrooms}
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									class="icon icon-tabler icon-tabler-bed-filled"
@@ -154,6 +251,27 @@ const Listings = () => {
 										clipRule="evenodd"
 									/>
 								</svg>
+								{listing.lotSize ? (
+									<>
+										{'   '} | Lot Size: {listing.lotSize} Sqft
+									</>
+								) : (
+									<></>
+								)}
+								{listing.floor ? (
+									<>
+										{'   '}| Floor: {listing.floor}
+									</>
+								) : (
+									<></>
+								)}
+								{listing.roomNumber ? (
+									<>
+										{'   '}| Room Number: {listing.roomNumber}
+									</>
+								) : (
+									<></>
+								)}
 							</p>
 						</div>
 					</div>
@@ -166,6 +284,24 @@ const Listings = () => {
 				<div className="flex flex-col w-full pt-4 pb-52">
 					<p className="text-xl text-black font-semibold">Description</p>
 					<p className="text-sm text-black">{listing.description}</p>
+					{listing.propertyType !== 'house' ? (
+						<>
+							<p className="text-xl text-black font-semibold pt-4">
+								Building Amenities
+							</p>
+							<p className="text-sm text-black">
+								{listing.buildingAmenities.map((amenity) => (
+									<li>
+										{(
+											amenity.charAt(0).toUpperCase() + amenity.slice(1)
+										).replace('_', ' ')}
+									</li>
+								))}
+							</p>
+						</>
+					) : (
+						<></>
+					)}
 				</div>
 			</div>
 		</>
