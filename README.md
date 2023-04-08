@@ -1,3 +1,11 @@
+# housing-prof, acc 2023
+
+To start backend and frontend in development:
+
+```bash
+npm run dev
+```
+
 # Goalsetter MERN app
 
 This is the goalsetter app from the [Learn the MERN Stack](https://www.youtube.com/watch?v=-0exw-9YJBo) series on YouTube.
