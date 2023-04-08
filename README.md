@@ -1,19 +1,18 @@
-# Goalsetter MERN app
+# housing-prof, acc 2023
 
-This is the goalsetter app from the [Learn the MERN Stack](https://www.youtube.com/watch?v=-0exw-9YJBo) series on YouTube.
+To start backend and frontend in development:
+
+```bash
+npm run dev
+```
 
 ## Usage
 
-Rename the .envexample to .env and add your MONGO_URI
+Fill in .env at root and .env.local in /front
 
 ### Install dependencies
 
 ```
-# Backend deps
-npm install
-
-# Frontend deps
-cd frontend
 npm install
 ```
 

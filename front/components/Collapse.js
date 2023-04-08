@@ -10,7 +10,7 @@ export const CollapsePage = (props) => {
 	return (
 		<div className="">
 			<button
-				className="flex flex-row justify-between items-center px-2 py-1.5 w-full text-start text-black border font-medium shadow-md rounded-md focus:outline-none"
+				className="flex flex-row justify-between items-center px-2 py-1.5 w-full text-start text-black border font-bold shadow-md rounded-md focus:outline-none"
 				onClick={toggle}
 			>
 				{props.title}
@@ -55,7 +55,7 @@ export const CollapsePage = (props) => {
 							}`}
 							onClick={() => props.setActiveSelection(option)}
 						>
-							{option}
+							{option.charAt(0).toUpperCase() + option.slice(1)}
 						</h2>
 					);
 				})}
