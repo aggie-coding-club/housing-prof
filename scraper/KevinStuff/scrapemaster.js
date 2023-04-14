@@ -46,6 +46,25 @@ async function isNoIndex(page) {
     return false;
 }
 
+async function getRentLinks(allLinks) {
+    const rentLinks = [];
+    for (const link of allLinks) {
+        const linkText = await link.evaluate(node => node.textContent.toLowerCase());
+        const hasApplyNow = linkText.includes("lease now") || linkText.includes("apply");
+
+        const hasChildApplyNow = await link.evaluate(node => {
+            return Array.from(node.children).some(child => {
+                const childLinkText = child.textContent.toLowerCase();
+                return childLinkText.includes("lease now") || childLinkText.includes("apply");
+            });
+        }); // if it has a child
+        if (hasApplyNow || hasChildApplyNow && link.href) {
+            rentLinks.push(link);
+        }
+    }
+    return await rentLinks[0].evaluate(node => node.href);
+}
+
 async function scrapeHousingPrices() {
     
     // Robots parsing, DO NOT TOUCH
@@ -97,20 +116,24 @@ async function scrapeHousingPrices() {
     // console.log(await floorPlans[0].evaluate(node => node.innerHTML));
 
     const twelveNorthJson = [{site: "12 North"}];
+    const twelveNorthFloorPlans = []
     for (const floorPlan of floorPlans) {
 
         const title = await floorPlan.$eval('.leaseleads-floor-plan-card__title', title => title.textContent);
+        //const price = 
         const image = await floorPlan.$eval('.leaseleads-floor-plan-card__image > picture > img', image => image.src);
+        const rentLink = await getRentLinks(await floorPlan.$$('.leaseleads-floor-plan-card__buttons > a'));
 
         const floorPlanJson = {
             title: title,
             image : image,
+            rentLink : rentLink
         };
-        twelveNorthJson.push(floorPlanJson);
+        twelveNorthFloorPlans.push(floorPlanJson);
     }
 
     // Write json out to file, add elements as they are scraped
-
+    twelveNorthJson.push({floorPlans: twelveNorthFloorPlans});
     twelveNorthJson.push({time : getDate()});
     writeFile(twelveNorthJson);
 
