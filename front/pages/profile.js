@@ -1,9 +1,11 @@
 // Profile Page
-import Image from 'next/image';
-import { listings } from '@/exampleHomes';
 import { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { Context } from '@/context/state.js';
+import Slide from '@/components/Slide';
+import Loading from '@/components/Loading';
+import { motion } from 'framer-motion';
+import { riseWithFade } from '@/utils/animations';
 
 const Profile = () => {
 	const [context, setContext] = useContext(Context);
@@ -15,8 +17,7 @@ const Profile = () => {
 	const router = useRouter();
 
 	useEffect(() => {
-		const token = localStorage.getItem('housingprof_token');
-		if (!token && !loading) {
+		if (!context.id) {
 			router.push('/login');
 		} else {
 			const bookmarks = fetch(
@@ -25,9 +26,9 @@ const Profile = () => {
 					: process.env.NEXT_BACK_API_URL_PROD) + `/users/me/bookmarks`,
 				{
 					method: 'GET',
+					credentials: 'include',
 					headers: {
 						'Content-Type': 'application/json',
-						Authorization: `Bearer ${token}`,
 					},
 				}
 			);
@@ -53,9 +54,9 @@ const Profile = () => {
 					`/users/me/bookmarks/listings`,
 				{
 					method: 'GET',
+					credentials: 'include',
 					headers: {
 						'Content-Type': 'application/json',
-						Authorization: `Bearer ${context.token}`,
 					},
 				}
 			);
@@ -95,109 +96,49 @@ const Profile = () => {
 	}, [bookmarks]);
 
 	const logout = () => {
-		localStorage.removeItem('housingprof_token');
 		setContext({});
 		router.push('/login');
 	};
 
 	return (
-		<div className="flex flex-col items-center h-full py-6">
-			<div className="w-40 h-40 rounded-full">
-				<img
-					src={context.profileImage}
-					className="rounded-full h-full w-auto object-cover object-center"
-				/>
-			</div>
-			<h1 className="text-2xl pt-2 pb-1">
-				{context.firstName} {context.lastName}
-			</h1>
-			{bookmarkListings && bookmarkListings.length > 0 ? (
-				<div className="flex flex-col w-full h-fit pt-0">
-					<h1 className="text-3xl font-semibold text-center py-4">
-						My Bookmarks
-					</h1>
-					<div class="carousel carousel-center rounded-box pb-12 px-10">
-						{bookmarkListings.map((listing) => (
-							<div class="carousel-item px-2">
-								<a href={`/${listing._id}`}>
-									<div className="card card-compact w-[22rem] lg:w-96 shadow-xl cursor-pointer">
-										<figure className="h-44">
-											<img
-												src={
-													listing.images.length > 0 ? listing.images[0].url : ''
-												}
-												alt={
-													listing.images.length > 0 ? listing.images[0].alt : ''
-												}
-											/>
-										</figure>
-										<div className="flex flex-col px-3 py-2 pb-3">
-											<h2 className="font-semibold text-xl line">
-												${listing.price.toLocaleString()}
-											</h2>
-											<p>{`${listing.bedrooms} beds | ${listing.bathrooms} baths | ${listing.sqft} sqft`}</p>
-											<p>
-												{listing.address.replace('.', '')}, {listing.city},{' '}
-												{listing.state} {listing.zip}
-											</p>
-										</div>
-									</div>
-								</a>
-							</div>
-						))}
+		<motion.div initial="initial" animate="animate">
+			<div className="flex flex-col items-center h-full py-6">
+				<motion.div variants={riseWithFade}>
+					<div className="w-40 h-40 rounded-full">
+						<img
+							src={context.profileImage}
+							className="rounded-full h-full w-auto object-cover object-center"
+						/>
 					</div>
-				</div>
-			) : (
-				<>
-					<h1 className="text-3xl font-semibold text-center py-4">
-						No Bookmarks, So Here's Some Featured Listings
+					<h1 className="text-2xl pt-2 pb-1">
+						{context.firstName} {context.lastName}
 					</h1>
-					{featuredListings.length > 0 ? (
-						<div className="flex flex-col w-full">
-							<div class="carousel carousel-center rounded-box pb-8 pt-4 px-10">
-								{featuredListings.map((listing, index) => (
-									<div class="carousel-item px-2" key={index}>
-										<a href={`/${listing._id}`}>
-											<div className="card card-compact w-[22rem] lg:w-96 shadow-xl cursor-pointer">
-												<figure className="h-44">
-													<img
-														src={
-															listing.images.length > 0
-																? listing.images[0].url
-																: ''
-														}
-														alt={
-															listing.images.length > 0
-																? listing.images[0].alt
-																: ''
-														}
-													/>
-												</figure>
-												<div className="flex flex-col px-3 py-2 pb-3">
-													<h2 className="font-semibold text-xl line">
-														${listing.price.toLocaleString()}
-													</h2>
-													<p>{`${listing.bedrooms} beds | ${listing.bathrooms} baths | ${listing.sqft} sqft`}</p>
-													<p>
-														{listing.address.replace('.', '')}, {listing.city},{' '}
-														{listing.state} {listing.zip}
-													</p>
-												</div>
-											</div>
-										</a>
-									</div>
-								))}
-							</div>
-						</div>
-					) : (
-						<></>
-					)}
-				</>
-			)}
-			<h1 className="cursor-pointer" onClick={logout}>
-				Sign Out
-			</h1>
-		</div>
+				</motion.div>
+				{!loading ? (
+					<>
+						{bookmarkListings.length > 0 ? (
+							<>
+								<Slide listings={bookmarkListings} title={'My Bookmarks'} />
+							</>
+						) : (
+							<>
+								<h1 className="text-3xl font-semibold text-center py-4">
+									No Bookmarks, So Here's Some Featured Listings
+								</h1>
+								<Slide listings={featuredListings} title={''} />
+							</>
+						)}
+						<h1 className="cursor-pointer" onClick={logout}>
+							Sign Out
+						</h1>
+					</>
+				) : (
+					<>
+						<Loading />
+					</>
+				)}
+			</div>
+		</motion.div>
 	);
 };
 

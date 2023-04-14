@@ -83,6 +83,15 @@ const listingModel = new mongoose.Schema({
 	// Fields for houses
 	lotSize: {
 		type: Number,
+		required: function () {
+			return this.propertyType === 'house';
+		},
+	},
+	houseAmenities: {
+		type: [String],
+		required: function () {
+			return this.propertyType === 'house';
+		},
 	},
 	featured: {
 		type: Boolean,

@@ -1,6 +1,7 @@
 // Register Page
 import { useContext, useState } from 'react';
 import { Context } from '@/context/state.js';
+import { useRouter } from 'next/router';
 
 const Register = () => {
 	const [firstName, setFirstName] = useState('');
@@ -8,6 +9,7 @@ const Register = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const router = useRouter();
 
 	const [context, setContext] = useContext(Context);
 
@@ -32,6 +34,7 @@ const Register = () => {
 					: process.env.NEXT_BACK_API_URL_PROD) + '/users',
 				{
 					method: 'POST',
+					credentials: 'include',
 					headers: {
 						'Content-Type': 'application/json',
 					},
@@ -47,18 +50,17 @@ const Register = () => {
 				if (res.status === 201) {
 					const body = res.json();
 					body.then((data) => {
-						window.localStorage.setItem('housingprof_token', data.token);
 						setContext({
 							id: data._id,
 							firstName: data.firstName,
 							lastName: data.lastName,
 							profileImage: data.profileImage,
 							email: data.email,
-							token: data.token,
 						});
+						router.push('/');
 					});
 				} else {
-					alert('User not created');
+					alert('Email already in use');
 				}
 			});
 		}
@@ -118,7 +120,6 @@ const Register = () => {
 				>
 					Register
 				</button>
-				<h1>{context.firstName}</h1>
 			</div>
 		</div>
 	);

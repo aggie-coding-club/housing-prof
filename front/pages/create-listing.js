@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import listings from '../data/listings';
 
 const CreateListing = () => {
 	const [formData, setFormData] = useState({
@@ -73,11 +74,9 @@ const CreateListing = () => {
 					: process.env.NEXT_BACK_API_URL_PROD) + '/listing',
 				{
 					method: 'POST',
+					credentials: 'include',
 					headers: {
 						'Content-Type': 'application/json',
-						Authorization: `Bearer ${localStorage.getItem(
-							'housingprof_token'
-						)}`,
 					},
 					body: JSON.stringify(formData),
 				}
@@ -85,6 +84,74 @@ const CreateListing = () => {
 			router.push(`/listings/${data._id}`);
 		} catch (error) {
 			console.error('Error creating listing:', error);
+		}
+	};
+
+	const addListings = async () => {
+		for (let i = 0; i < 5; i++) {
+			if (listings[i].description.type !== 'land') {
+				let listing = {};
+				if (listings[i].description.type !== 'condos') {
+					listing = {
+						address: listings[i].location.address.line,
+						city: listings[i].location.address.city,
+						state: listings[i].location.address.state_code,
+						zip: listings[i].location.address.postal_code,
+						price: listings[i].list_price,
+						bedrooms: listings[i].description.beds,
+						bathrooms: listings[i].description.baths,
+						sqft: listings[i].description.sqft,
+						description: ' ',
+						images: [
+							{ url: listings[i].primary_photo.href, alt: 'Primary Photo' },
+						],
+						propertyType: 'house',
+						lotSize: listings[i].description.lot_sqft,
+						email: listings[i].advertisers[0].email
+							? listings[i].advertisers[0].email
+							: ' ',
+					};
+				} else {
+					listing = {
+						address: listings[i].location.address.line,
+						city: listings[i].location.address.city,
+						state: listings[i].location.address.state_code,
+						zip: listings[i].location.address.postal_code,
+						price: listings[i].list_price,
+						bedrooms: listings[i].description.beds,
+						bathrooms: listings[i].description.baths,
+						sqft: listings[i].description.sqft,
+						description: ' ',
+						images: [
+							{ url: listings[i].primary_photo.href, alt: 'Primary Photo' },
+						],
+						propertyType: 'condo',
+						roomNumber: ' ',
+						buildingAmenities: [],
+						email: listings[i].advertisers[0].email
+							? listings[i].advertisers[0].email
+							: ' ',
+					};
+				}
+				try {
+					const { data } = await fetch(
+						(process.env.NEXT_ENV === 'development'
+							? process.env.NEXT_BACK_API_URL_DEV
+							: process.env.NEXT_BACK_API_URL_PROD) + '/listing',
+						{
+							method: 'POST',
+							credentials: 'include',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify(listing),
+						}
+					).then((res) => res.json());
+					router.push(`/listings/${data._id}`);
+				} catch (error) {
+					console.error('Error creating listing:', error);
+				}
+			}
 		}
 	};
 
@@ -169,7 +236,9 @@ const CreateListing = () => {
 					/>
 				</div>
 				<div className="flex flex-row justify-center items-center">
-					<label htmlFor="price">Price</label>
+					<label htmlFor="price">
+						Price {formData.propertyType !== 'house' ? 'Per Month' : ''}
+					</label>
 					<input
 						type="number"
 						name="price"
@@ -315,6 +384,15 @@ const CreateListing = () => {
 						className={`border-2 bg-maroon-700 text-white p-2 m-1 rounded-lg`}
 					>
 						Create Listing
+					</button>
+					<button
+						type="submit"
+						className={`border-2 bg-maroon-400 text-white p-2 m-1 rounded-lg`}
+						onClick={() => {
+							addListings();
+						}}
+					>
+						Add all listings
 					</button>
 				</div>
 			</form>

@@ -53,6 +53,7 @@ export const CollapsePage = (props) => {
 							className={`py-0.5 cursor-pointer w-fit ${
 								props.activeSelection === option ? 'font-bold' : 'font-medium'
 							}`}
+							key={option}
 							onClick={() => props.setActiveSelection(option)}
 						>
 							{option.charAt(0).toUpperCase() + option.slice(1)}
@@ -78,7 +79,7 @@ const Collapse = ({ isOpen, children }) => {
 			aria-hidden={!isOpen}
 			style={inlineStyle}
 			className={`${
-				isOpen ? 'border shadow-lg' : 'border-white'
+				isOpen ? 'border shadow-lg mb-3' : 'border-white mb-0'
 			} flex-col px-2 py-2 rounded-md transition-all ease mt-2 text-black overflow-hidden duration-300`}
 		>
 			{children}

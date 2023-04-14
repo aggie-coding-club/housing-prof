@@ -2,7 +2,7 @@ const Footer = () => {
 	return (
 		<>
 			<nav
-				className={`flex flex-col w-full h-fit my-4 items-center justify-between bg-maroon-700 text-white`}
+				className={`flex flex-col w-full h-fit mt-4 items-center justify-between bg-maroon-700 text-white`}
 			>
 				<h1 className="text-2xl font-bold pt-4">Housing Prof</h1>
 				<p className=" px-4 lg:px-96 text-center pt-4 pb-10 text-base">

@@ -19,6 +19,7 @@ const Login = () => {
 				: process.env.NEXT_BACK_API_URL_PROD) + '/users/login',
 			{
 				method: 'POST',
+				credentials: 'include',
 				headers: {
 					'Content-Type': 'application/json',
 				},
@@ -32,14 +33,12 @@ const Login = () => {
 			if (res.status === 200) {
 				const body = res.json();
 				body.then((data) => {
-					window.localStorage.setItem('housingprof_token', data.token);
 					setContext({
 						id: data._id,
 						firstName: data.firstName,
 						lastName: data.lastName,
 						profileImage: data.profileImage,
 						email: data.email,
-						token: data.token,
 					});
 					router.push('/');
 				});

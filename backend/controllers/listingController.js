@@ -85,6 +85,25 @@ const deleteListing = asyncHandler(async (req, res) => {
 	}
 });
 
+// @desc    Search listings with multiple keywords
+// @route   GET /api/listings/search?keywords=keyword1+keyword2
+// @access  Public
+const searchListings = asyncHandler(async (req, res) => {
+	const keywords = req.query.keywords ? req.query.keywords.split('+') : [];
+
+	const keywordQueries = keywords.flatMap((keyword) => [
+		{ description: { $regex: keyword.trim(), $options: 'i' } },
+		{ address: { $regex: keyword.trim(), $options: 'i' } },
+		{ city: { $regex: keyword.trim(), $options: 'i' } },
+		{ state: { $regex: keyword.trim(), $options: 'i' } },
+	]);
+
+	const query = keywords.length > 0 ? { $or: keywordQueries } : {};
+
+	const listings = await Listing.find(query);
+	res.status(200).json(listings);
+});
+
 module.exports = {
 	createListing,
 	getAllListings,
@@ -92,4 +111,5 @@ module.exports = {
 	updateListing,
 	deleteListing,
 	getFeaturedListings,
+	searchListings,
 };

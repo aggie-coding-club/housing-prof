@@ -97,20 +97,20 @@ const NavBar = () => {
 							<div className="absolute left-5 lg:right-5 lg:left-auto mb-4 lg:mb-0 ml-0 lg:ml-4 mt-4 lg:mt-0">
 								<img
 									src={context.profileImage}
-									className="w-9 h-9 rounded-full cursor-pointer hover:opacity-75 transition"
+									className="w-9 h-9 rounded-full cursor-pointer bg-center justify-center items-center hover:opacity-75 transition"
 									onClick={goProfile}
 								/>
 							</div>
 						) : (
 							<div className="absolute left-5 lg:right-5 lg:left-auto">
 								<a
-									className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-maroon-700 hover:bg-white mt-4 mr-4 lg:mt-0 transition"
+									className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-maroon-700 hover:bg-white mt-4 mr-4 lg:mt-0 cursor-pointer transition"
 									onClick={login}
 								>
 									Log in
 								</a>
 								<a
-									className="inline-block text-sm px-4 py-2 leading-none border rounded text-maroon-700 border-white bg-white hover:bg-gray-300 mt-4 lg:mt-0 transition"
+									className="inline-block text-sm px-4 py-2 leading-none border rounded text-maroon-700 border-white bg-white hover:bg-gray-300 mt-4 lg:mt-0 cursor-pointer transition"
 									onClick={signup}
 								>
 									Sign Up
