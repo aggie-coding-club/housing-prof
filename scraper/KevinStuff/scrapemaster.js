@@ -9,7 +9,7 @@ const fs = require('fs'); // file writer
 const puppeteer = require('puppeteer');
 const robotsParser = require('robots-parser');
 
-var url = "https://live12north.com/floor-plans/"; 
+var url = "https://stackstudentliving.com/floor-plans/#floorplans-gray-wrap/"; 
 
 // DON'T CHANGE
 function writeFile(data) {
@@ -109,50 +109,135 @@ async function scrapeHousingPrices() {
             // Get bedrooms
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     // 12 North
 
-    var floorPlans = await page.$$('.leaseleads-floor-plan-card');
+    // var floorPlans = await page.$$('.leaseleads-floor-plan-card');
 
-    // console.log(await floorPlans[0].evaluate(node => node.innerHTML));
+    // // console.log(await floorPlans[0].evaluate(node => node.innerHTML));
 
-    const twelveNorthJson = [{site: "12 North"}];
-    const twelveNorthFloorPlans = []
-    for (const floorPlan of floorPlans) {
+    // const twelveNorthJson = [{site: "12 North"}];
+    // const twelveNorthFloorPlans = []
+    // for (const floorPlan of floorPlans) {
 
-        const title = await floorPlan.$eval('.leaseleads-floor-plan-card__title', title => title.textContent);
-        const price = await floorPlan.$eval('.leaseleads-floor-plan-card__details--large > li > span', price =>price.textContent);
+    //     const title = await floorPlan.$eval('.leaseleads-floor-plan-card__title', title => title.textContent);
+    //     const price = await floorPlan.$eval('.leaseleads-floor-plan-card__details--large > li > span', price =>price.textContent);
 
-        const details = await floorPlan.$$('.leaseleads-floor-plan-card__details > li');
-        const bed = await details[0].evaluate(node => node.textContent);
-        const bath = await details[1].evaluate(node => node.textContent);
-        const sqft = await details[2].evaluate(node => node.textContent);
+    //     const details = await floorPlan.$$('.leaseleads-floor-plan-card__details > li');
+    //     const bed = await details[0].evaluate(node => node.textContent);
+    //     const bath = await details[1].evaluate(node => node.textContent);
+    //     const sqft = await details[2].evaluate(node => node.textContent);
 
-        const image = await floorPlan.$eval('.leaseleads-floor-plan-card__image > picture > img', image => image.src);
-        const rentLink = await getRentLinks(await floorPlan.$$('.leaseleads-floor-plan-card__buttons > a'));
+    //     const image = await floorPlan.$eval('.leaseleads-floor-plan-card__image > picture > img', image => image.src);
+    //     const rentLink = await getRentLinks(await floorPlan.$$('.leaseleads-floor-plan-card__buttons > a'));
 
-        const floorPlanJson = {
-            title : title,
-            price : price,
-            bed : bed,
-            bath : bath,
-            sqft : sqft,
-            image : image,
-            rentLink : rentLink
-        };
-        twelveNorthFloorPlans.push(floorPlanJson);
-    }
+    //     const floorPlanJson = {
+    //         title : title,
+    //         price : price,
+    //         bed : bed,
+    //         bath : bath,
+    //         sqft : sqft,
+    //         image : image,
+    //         rentLink : rentLink
+    //     };
+    //     twelveNorthFloorPlans.push(floorPlanJson);
+    // }
 
-    // Write json out to file, add elements as they are scraped
-    twelveNorthJson.push({floorPlans: twelveNorthFloorPlans});
-    const address = await page.$$eval('a', link => {
-        return link.filter(link => {
-            const linkText = link.textContent.toLowerCase();
-            return linkText.includes("college station, tx");
-        }).map(link => link.textContent);
-    });
-    twelveNorthJson.push({address : address[0]});
-    twelveNorthJson.push({time : getDate()});
-    writeFile(twelveNorthJson);
+    // // Write json out to file, add elements as they are scraped
+    // twelveNorthJson.push({floorPlans: twelveNorthFloorPlans});
+    // const address = await page.$$eval('a', link => {
+    //     return link.filter(link => {
+    //         const linkText = link.textContent.toLowerCase();
+    //         return linkText.includes("college station, tx");
+    //     }).map(link => link.textContent);
+    // });
+    // twelveNorthJson.push({address : address[0]});
+    // twelveNorthJson.push({time : getDate()});
+    // writeFile(twelveNorthJson);
+
+
+
+
+
+
+
+
+
+
+
+    // // The Stack
+
+    // var floorPlans = await page.$$('.floorplan-block');
+    
+    // const rentLink = await getRentLinks(await page.$$('a'));
+
+    // const siteJson = [{site: "The Stack"}];
+    // const siteFloorPlans = [];
+    // for (const floorPlan of floorPlans) {
+
+    //     const title = await floorPlan.$eval('.floorplan-block-info-name', title => title.textContent);
+
+    //     const details = await floorPlan.$$('.floorplan-block-info-table > table > tbody > tr');
+    //     var bed = await details[0].$$('td');
+    //     bed = await bed[1].evaluate(node =>node.textContent);
+    //     var bath = await details[1].$$('td');
+    //     bath = await bath[1].evaluate(node =>node.textContent);
+    //     var sqft = await details[2].$$('td');
+    //     sqft = await sqft[1].evaluate(node =>node.textContent);
+    //     var price = await details[3].$$('td');
+    //     price = await price[1].evaluate(node =>node.textContent);
+
+    //     const image = await floorPlan.$eval('.floorplan-block-image > img', image => image.src);
+    //     //const rentLink = await getRentLinks(await floorPlan.$$('.leaseleads-floor-plan-card__buttons > a'));
+
+    //     const floorPlanJson = {
+    //         title : title,
+    //         price : price,
+    //         bed : bed,
+    //         bath : bath,
+    //         sqft : sqft,
+    //         image : image,
+    //         rentLink : rentLink
+    //     };
+    //     siteFloorPlans.push(floorPlanJson);
+    // }
+
+    // // Write json out to file, add elements as they are scraped
+    // siteJson.push({floorPlans: siteFloorPlans});
+    // const address = await page.$$eval('a', link => {
+    //     return link.filter(link => {
+    //         const linkText = link.textContent.toLowerCase();
+    //         return linkText.includes("college station, tx");
+    //     }).map(link => link.textContent);
+    // });
+    // siteJson.push({address : address[0]});
+    // siteJson.push({time : getDate()});
+    // writeFile(siteJson);
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
 
     await browser.close();
 }
