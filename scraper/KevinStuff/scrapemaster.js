@@ -144,6 +144,13 @@ async function scrapeHousingPrices() {
 
     // Write json out to file, add elements as they are scraped
     twelveNorthJson.push({floorPlans: twelveNorthFloorPlans});
+    const address = await page.$$eval('a', link => {
+        return link.filter(link => {
+            const linkText = link.textContent.toLowerCase();
+            return linkText.includes("college station, tx");
+        }).map(link => link.textContent);
+    });
+    twelveNorthJson.push({address : address[0]});
     twelveNorthJson.push({time : getDate()});
     writeFile(twelveNorthJson);
 
