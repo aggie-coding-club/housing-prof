@@ -3,13 +3,11 @@ Data scraped for:
 https://live12north.com/floor-plans/
 https://stackstudentliving.com/floor-plans/#floorplans-gray-wrap/
 https://thestandardcollegestation.landmark-properties.com/floorplans/
-
+https://revstudentliving.com/floor-plans/
 
 Working
 
-https://riseatnorthgateapts.prospectportal.com/college-station/the-rise-at-northgate/student/ - also changed layout
-https://stackstudentliving.com/floor-plans/#floorplans-gray-wrap/
-https://aspirecollegestation.prospectportal.com/college-station/aspire-college-station/student/ - changed layout
+https://aspirecollegestation.prospectportal.com/college-station/aspire-college-station/student
 
 https://northpoint-crossing.com/rates-floorplans/ - the data has the same link but one link doesn't have a / at the end
 

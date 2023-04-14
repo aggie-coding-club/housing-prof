@@ -63,7 +63,7 @@ async function getRentLinks(allLinks) {
     return await rentLinks[0].evaluate(node => node.href);
 }
 
-var url = "https://thestandardcollegestation.landmark-properties.com/floorplans/"; 
+var url = "https://revstudentliving.com/floor-plans/"; 
 
 async function scrapeHousingPrices() {
     
@@ -232,63 +232,13 @@ async function scrapeHousingPrices() {
 
 
 
-    // The Standard
+    // // The Standard
 
-    var floorPlans = await page.$$('.fp-block');
-    
-    // const rentLink = await getRentLinks(await page.$$('a'));
-
-    const siteJson = [{site: "The Standard"}];
-    const siteFloorPlans = [];
-    for (const floorPlan of floorPlans) {
-
-        const title = await floorPlan.$eval('.fp-name', title => title.textContent);
-
-        const bed = await floorPlan.$eval('.fp-beds', bed => bed.textContent);
-        const bath = await floorPlan.$eval('.fp-baths', bath => bath.textContent);
-        const sqft = await floorPlan.$eval('.fp-sqft', sqft => sqft.textContent);
-        const price = await floorPlan.$eval('.fp-price', price => price.textContent);
-
-        const image = await floorPlan.$$eval('.fp-image > img', image => image.src);
-        const links = await floorPlan.$$eval('.fp-link > strong > a', links => links.map(link => link.href));
-        const rentLink = links[1];
-
-        const floorPlanJson = {
-            title : title,
-            price : price,
-            bed : bed,
-            bath : bath,
-            sqft : sqft,
-            image : image,
-            rentLink : rentLink
-        };
-        siteFloorPlans.push(floorPlanJson);
-    }
-
-    // Write json out to file, add elements as they are scraped
-    siteJson.push({floorPlans: siteFloorPlans});
-    const address = await page.$$eval('.footer-block-content > p', texts => texts.map(text => text.textContent));
-    siteJson.push({address : address[2]+" "+address[3]});
-    siteJson.push({time : getDate()});
-    writeFile(siteJson);
-
-
-
-
-
-
-
-
-
-
-
-    // // Aspire College Station
-
-    // var floorPlans = await page.$$('.floor_plan_gallery_item');
+    // var floorPlans = await page.$$('.fp-block');
     
     // // const rentLink = await getRentLinks(await page.$$('a'));
 
-    // const siteJson = [{site: "Aspire College Station"}];
+    // const siteJson = [{site: "The Standard"}];
     // const siteFloorPlans = [];
     // for (const floorPlan of floorPlans) {
 
@@ -317,15 +267,74 @@ async function scrapeHousingPrices() {
 
     // // Write json out to file, add elements as they are scraped
     // siteJson.push({floorPlans: siteFloorPlans});
-    // const address = await page.$$eval('a', link => {
-    //     return link.filter(link => {
-    //         const linkText = link.textContent.toLowerCase();
-    //         return linkText.includes("college station, tx");
-    //     }).map(link => link.textContent);
-    // });
-    // siteJson.push({address : address[0]});
+    // const address = await page.$$eval('.footer-block-content > p', texts => texts.map(text => text.textContent));
+    // siteJson.push({address : address[2]+" "+address[3]});
     // siteJson.push({time : getDate()});
     // writeFile(siteJson);
+
+
+
+
+
+
+
+
+
+
+
+    // Rev Student Living
+
+    var floorPlans = await page.$$('.floorsec-inner');
+    
+    const rentLink = await getRentLinks(await page.$$('a'));
+
+    const siteJson = [{site: "Rev Student Living"}];
+    const siteFloorPlans = [];
+    for (const floorPlan of floorPlans) {
+
+        var title = await floorPlan.$eval('.map-img-title', title => title.textContent);
+        title = title.split("\n")[1].trim();
+
+        const bedBath = await floorPlan.$eval('.fp-bed-count', text => text.textContent);
+        var bed;
+        var bath;
+        if (bedBath.includes("STUDIO")) {
+            bed = "1 BED";
+            bath = "1 BATH";
+        }
+        else {
+            bed = bedBath.split(" / ")[0];
+            bath = bedBath.split(" / ")[1];
+        }
+
+        //const sqft = await floorPlan.$eval('.sq-feet > .fp-col-text', sqft => sqft.textContent);
+        const price = await floorPlan.$eval('.fp-price-sec', price => price.textContent);
+
+        const image = await floorPlan.$$eval('.floor_plan_gallery_item__image > img', image => image.src);
+        // const links = await floorPlan.$$eval('.fp-link > strong > a', links => links.map(link => link.href));
+        // const rentLink = links[1];
+
+        const floorPlanJson = {
+            title : title,
+            price : price,
+            bed : bed,
+            bath : bath,
+            //sqft : sqft,
+            image : image,
+            rentLink : rentLink
+        };
+        siteFloorPlans.push(floorPlanJson);
+    }
+
+    // Write json out to file, add elements as they are scraped
+    siteJson.push({floorPlans: siteFloorPlans});
+    var address = await page.$eval('.footer-section-3', text => text.textContent);
+    address = address.split("\t").filter(address => {
+        return address.includes("College Station");
+    });
+    siteJson.push({address : address});
+    siteJson.push({time : getDate()});
+    writeFile(siteJson);
 
 
 
