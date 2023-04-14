@@ -9,14 +9,21 @@ const fs = require('fs'); // file writer
 const puppeteer = require('puppeteer');
 const robotsParser = require('robots-parser');
 
-var url = "insert url here"; 
+var url = "https://live12north.com/floor-plans/"; 
 
 // DON'T CHANGE
 function writeFile(data) {
-  fs.writeFile ("data.json", JSON.stringify(data), function(err) {
+  fs.writeFile ("data.json", JSON.stringify(data, null, "\t"), function(err) {
       if (err) throw err;
       }
   );
+}
+
+function getDate() {
+    // Get the timestamp of when it was scraped, DO NOT TOUCH
+    var today = new Date();
+    var timestamp = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + ' ' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    return timestamp;
 }
 
 // DON'T CHANGE
@@ -81,18 +88,31 @@ async function scrapeHousingPrices() {
             // Get address
 
             // Get bedrooms
-            
-    
-    // Get the timestamp of when it was scraped, DO NOT TOUCH
-    var today = new Date();
-    var timestamp = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + ' ' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+
+    // 12 North
+
+    var floorPlans = await page.$$('.leaseleads-floor-plan-card');
+
+    // console.log(await floorPlans[0].evaluate(node => node.innerHTML));
+
+    const twelveNorthJson = [{site: "12 North"}];
+    for (const floorPlan of floorPlans) {
+
+        const title = await floorPlan.$eval('.leaseleads-floor-plan-card__title', title => title.textContent);
+        const image = await floorPlan.$eval('.leaseleads-floor-plan-card__image > picture > img', image => image.src);
+
+        const floorPlanJson = {
+            title: title,
+            image : image,
+        };
+        twelveNorthJson.push(floorPlanJson);
+    }
 
     // Write json out to file, add elements as they are scraped
-    var json = {
-        time : timestamp
-    };
 
-    writeFile(json);
+    twelveNorthJson.push({time : getDate()});
+    writeFile(twelveNorthJson);
 
     await browser.close();
 }
