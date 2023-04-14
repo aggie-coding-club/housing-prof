@@ -121,12 +121,21 @@ async function scrapeHousingPrices() {
 
         const title = await floorPlan.$eval('.leaseleads-floor-plan-card__title', title => title.textContent);
         const price = await floorPlan.$eval('.leaseleads-floor-plan-card__details--large > li > span', price =>price.textContent);
+
+        const details = await floorPlan.$$('.leaseleads-floor-plan-card__details > li');
+        const bed = await details[0].evaluate(node => node.textContent);
+        const bath = await details[1].evaluate(node => node.textContent);
+        const sqft = await details[2].evaluate(node => node.textContent);
+
         const image = await floorPlan.$eval('.leaseleads-floor-plan-card__image > picture > img', image => image.src);
         const rentLink = await getRentLinks(await floorPlan.$$('.leaseleads-floor-plan-card__buttons > a'));
 
         const floorPlanJson = {
-            title: title,
-            price: price,
+            title : title,
+            price : price,
+            bed : bed,
+            bath : bath,
+            sqft : sqft,
             image : image,
             rentLink : rentLink
         };
