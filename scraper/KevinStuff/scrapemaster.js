@@ -120,12 +120,13 @@ async function scrapeHousingPrices() {
     for (const floorPlan of floorPlans) {
 
         const title = await floorPlan.$eval('.leaseleads-floor-plan-card__title', title => title.textContent);
-        //const price = 
+        const price = await floorPlan.$eval('.leaseleads-floor-plan-card__details--large > li > span', price =>price.textContent);
         const image = await floorPlan.$eval('.leaseleads-floor-plan-card__image > picture > img', image => image.src);
         const rentLink = await getRentLinks(await floorPlan.$$('.leaseleads-floor-plan-card__buttons > a'));
 
         const floorPlanJson = {
             title: title,
+            price: price,
             image : image,
             rentLink : rentLink
         };

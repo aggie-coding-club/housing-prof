@@ -6,62 +6,73 @@
 		"floorPlans": [
 			{
 				"title": "Studio",
+				"price": "$1,350",
 				"image": "https://live12north.com/wp-content/uploads/2022/04/6324e4f10d1f11.11379232579-2000x1518.jpg",
 				"rentLink": "https://live12north.prospectportal.com/college-station/12-north/floorplans/studio-1042877/fp_name/occupancy_type/student"
 			},
 			{
 				"title": "1BR/1BA – Classic",
+				"price": "$1,400",
 				"image": "https://live12north.com/wp-content/uploads/2022/04/63a356b35598a7.86503141476.jpg",
 				"rentLink": "https://live12north.prospectportal.com/college-station/12-north/floorplans/1br1ba-classic-1042875/fp_name/occupancy_type/student"
 			},
 			{
 				"title": "1BR/1BA – Deluxe",
+				"price": "$1,415",
 				"image": "https://live12north.com/wp-content/uploads/2022/04/63a356f7ccf940.25687656142.jpg",
 				"rentLink": "https://live12north.prospectportal.com/college-station/12-north/floorplans/1br1ba-deluxe-1042873/fp_name/occupancy_type/student"
 			},
 			{
 				"title": "2BR/2BA – Classic – A",
+				"price": "$999",
 				"image": "https://live12north.com/wp-content/uploads/2022/04/6324e5c6bae326.99389911993-1071x2000.jpg",
 				"rentLink": "https://live12north.prospectportal.com/college-station/12-north/floorplans/2br2ba-classic-a-1042874/fp_name/occupancy_type/student"
 			},
 			{
 				"title": "2BR/2BA – Classic – B",
+				"price": "$825",
 				"image": "https://live12north.com/wp-content/uploads/2022/04/6324e5f70e3ea7.37683524148-2000x1518.jpg",
 				"rentLink": "https://live12north.prospectportal.com/college-station/12-north/floorplans/2br2ba-classic-b-1042878/fp_name/occupancy_type/student"
 			},
 			{
 				"title": "2BR/2BA – Deluxe",
+				"price": "$835",
 				"image": "https://live12north.com/wp-content/uploads/2022/04/6324e628b78246.47497977793-2000x1518.jpg",
 				"rentLink": "https://live12north.prospectportal.com/college-station/12-north/floorplans/2br2ba-deluxe-1042880/fp_name/occupancy_type/student"
 			},
 			{
 				"title": "2BR/2BA – Premium – A",
+				"price": "$1,087",
 				"image": "https://live12north.com/wp-content/uploads/2022/04/63e41290a924a9.52323063995.jpg",
 				"rentLink": "https://live12north.prospectportal.com/college-station/12-north/floorplans/2br2ba-premium-a-1042872/fp_name/occupancy_type/student"
 			},
 			{
 				"title": "2BR/2BA – Premium – B",
+				"price": "$1,067",
 				"image": "https://live12north.com/wp-content/uploads/2022/04/63a357533e2bc3.64808269170.jpg",
 				"rentLink": "https://live12north.prospectportal.com/college-station/12-north/floorplans/2br2ba-premium-b-1042871/fp_name/occupancy_type/student"
 			},
 			{
 				"title": "2BR/2BA – Premium – C",
+				"price": "$1,105",
 				"image": "https://live12north.com/wp-content/uploads/2022/04/63e412ddb26f92.04199180189.jpg",
 				"rentLink": "https://live12north.prospectportal.com/college-station/12-north/floorplans/2br2ba-premium-c-1042879/fp_name/occupancy_type/student"
 			},
 			{
 				"title": "2BR/2BA – Premium – D",
+				"price": "$1,162",
 				"image": "https://live12north.com/wp-content/uploads/2022/04/63e4134a60f973.72227527340.jpg",
 				"rentLink": "https://live12north.prospectportal.com/college-station/12-north/floorplans/2br2ba-premium-d-1042876/fp_name/occupancy_type/student"
 			},
 			{
 				"title": "2BR/2BA – Z",
+				"price": "$1,192",
 				"image": "https://live12north.com/wp-content/uploads/2022/04/63e4139273b638.04470771556.jpg",
 				"rentLink": "https://live12north.prospectportal.com/college-station/12-north/floorplans/2br2ba-z-1042869/fp_name/occupancy_type/student"
 			}
 		]
 	},
 	{
-		"time": "2023-4-14 14:41:56"
+		"time": "2023-4-14 14:45:53"
 	}
 ]
