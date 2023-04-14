@@ -8,7 +8,7 @@ npm run dev
 
 ## Usage
 
-Fill in .env at root and .env.local in /front
+Fill in .env at root and .env.local in /front using .env.example and .env.local.example as a template
 
 ### Install dependencies
 
