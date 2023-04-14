@@ -109,7 +109,8 @@ async function scrapeHousingPrices() {
             // Get bedrooms
 
 
-
+    //TODO: Post with axios
+    //TODO: Create room id with site and floor plan
 
 
 
