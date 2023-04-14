@@ -55,6 +55,53 @@ const listingModel = new mongoose.Schema({
 		type: [imagesModel],
 		required: true,
 	},
+	propertyType: {
+		type: String,
+		enum: ['house', 'apartment', 'condo'],
+		required: true,
+	},
+	// Fields for apartments
+	floor: {
+		type: Number,
+		required: function () {
+			return this.propertyType === 'apartment';
+		},
+	},
+	// Fields for apartments and condos
+	roomNumber: {
+		type: String,
+		required: function () {
+			return this.propertyType === 'apartment' || this.propertyType === 'condo';
+		},
+	},
+	buildingAmenities: {
+		type: [String],
+		required: function () {
+			return this.propertyType === 'apartment' || this.propertyType === 'condo';
+		},
+	},
+	// Fields for houses
+	lotSize: {
+		type: Number,
+		required: function () {
+			return this.propertyType === 'house';
+		},
+	},
+	houseAmenities: {
+		type: [String],
+		required: function () {
+			return this.propertyType === 'house';
+		},
+	},
+	featured: {
+		type: Boolean,
+		default: false,
+		required: true,
+	},
+	email: {
+		type: String,
+		required: true,
+	},
 });
 
 // Compile the schema into a model

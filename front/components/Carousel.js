@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { Context } from '@/context/state.js';
+import LightBox from './LightBox';
 
 const ImageCarousel = (props) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -80,9 +81,9 @@ const ImageCarousel = (props) => {
 				{!props.listingLiked ? (
 					<div
 						className={`absolute left-5 bottom-[0] translate-y-[25%] text-2xl rounded-full p-2 bg-white hover:bg-gray-100 transition-all text-maroon-700 shadow-md cursor-pointer ${
-							context.token ? '' : 'opacity-75 pointer-events-none'
+							context.id ? '' : 'opacity-75 pointer-events-none'
 						}`}
-						onClick={context.token ? props.likeListing : () => {}}
+						onClick={context.id ? props.likeListing : () => {}}
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"

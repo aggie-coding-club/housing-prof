@@ -4,20 +4,21 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { Context } from '@/context/state.js';
 import { useState, useEffect, useContext } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import Modal from '@/components/Modal';
 
 export default function App({ Component, pageProps }) {
 	useEffect(() => {
-		const token = window.localStorage.getItem('housingprof_token');
-		if (!context.token && token) {
+		if (!context.id) {
 			const user = fetch(
 				(process.env.NEXT_ENV === 'development'
 					? process.env.NEXT_BACK_API_URL_DEV
 					: process.env.NEXT_BACK_API_URL_PROD) + '/users/me',
 				{
 					method: 'GET',
+					credentials: 'include',
 					headers: {
 						'Content-Type': 'application/json',
-						Authorization: `Bearer ${token}`,
 					},
 				}
 			);
@@ -31,7 +32,6 @@ export default function App({ Component, pageProps }) {
 							lastName: data.lastName,
 							profileImage: data.profileImage,
 							email: data.email,
-							token: token,
 						});
 					});
 				} else {
@@ -47,16 +47,17 @@ export default function App({ Component, pageProps }) {
 		lastName: '',
 		profileImage: '',
 		email: '',
-		token: '',
 	});
 	return (
 		<>
 			<Context.Provider value={[context, setContext]}>
-				<ThemeProvider>
-					<NavBar />
-					<Component {...pageProps} />
-					<Footer />
-				</ThemeProvider>
+				<AnimatePresence mode="wait">
+					<ThemeProvider>
+						<NavBar />
+						<Component {...pageProps} />
+						<Footer />
+					</ThemeProvider>
+				</AnimatePresence>
 			</Context.Provider>
 		</>
 	);

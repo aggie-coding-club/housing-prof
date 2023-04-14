@@ -4,6 +4,9 @@ import { Parallax } from 'react-parallax';
 import { useState, useEffect, useContext } from 'react';
 import { Context } from '../context/state.js';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
+import { riseWithFade } from '@/utils/animations';
+import Slide from '@/components/Slide';
 
 const Home = () => {
 	const categories = ['Houses', 'Condos', 'Apartment', 'Land', 'Commercial'];
@@ -33,8 +36,7 @@ const Home = () => {
 				});
 			}
 		});
-		const token = localStorage.getItem('housingprof_token');
-		if (token) {
+		if (context.id) {
 			const bookmarkListings = fetch(
 				(process.env.NEXT_ENV === 'development'
 					? process.env.NEXT_BACK_API_URL_DEV
@@ -42,9 +44,9 @@ const Home = () => {
 					`/users/me/bookmarks/listings`,
 				{
 					method: 'GET',
+					credentials: 'include',
 					headers: {
 						'Content-Type': 'application/json',
-						Authorization: `Bearer ${token}`,
 					},
 				}
 			);
@@ -70,7 +72,11 @@ const Home = () => {
 	};
 
 	return (
-		<div className="flex flex-col items-center h-fit">
+		<motion.div
+			className="flex flex-col items-center h-fit"
+			initial="initial"
+			animate="animate"
+		>
 			<Parallax
 				bgImage="/splash.jpeg"
 				className="w-full h-[30rem]"
@@ -78,108 +84,36 @@ const Home = () => {
 				style={{ position: 'absolute' }}
 				bgImageStyle={{ bottom: '-5rem', width: '100%', minWidth: '1000px' }}
 			>
-				<div className="w-full h-[30rem] px-5 lg:px-52 flex flex-col items-center justify-center bg-[#22222288] ">
-					<p className="text-white text-5xl font-semibold py-2 w-full text-center">
-						Learn From The Housing Prof
-					</p>
-					<p className="text-white text-3xl font-medium py-2 w-full text-center">
-						Expert Guidance for Bryan/College Station Properties
-					</p>
-					<div className="w-full flex justify-center px-20 py-2">
-						{/* <SearchBar
+				<div className="w-full h-[30rem] px-5 lg:px-52 flex flex-col items-center justify-center bg-[#22222288]">
+					<motion.div variants={riseWithFade}>
+						<p className="text-white text-5xl font-semibold py-2 w-full text-center">
+							Learn From The Housing Prof
+						</p>
+						<p className="text-white text-3xl font-medium py-2 w-full text-center">
+							Expert Guidance for Bryan/College Station Properties
+						</p>
+						<div className="w-full flex justify-center px-20 py-2">
+							{/* <SearchBar
 							categories={categories}
 							search={searchInput}
 							setSearch={setSearchInput}
 							handleSearch={handleSearch}
 						/> */}
-						<a
-							className="inline-block text-2xl px-4 py-3 text-center items-center leading-none border rounded-lg text-white border-maroon-700 bg-maroon-700 hover:bg-maroon-800 mt-4 lg:mt-0 cursor-pointer transition"
-							onClick={explore}
-						>
-							Explore
-						</a>
-					</div>
+							<a
+								className="inline-block text-2xl px-4 py-3 text-center items-center leading-none border rounded-lg text-white border-maroon-700 bg-maroon-700 hover:bg-maroon-800 mt-4 lg:mt-0 cursor-pointer transition"
+								onClick={explore}
+							>
+								Explore
+							</a>
+						</div>
+					</motion.div>
 				</div>
 			</Parallax>
-			{featuredListings.length > 0 ? (
-				<div className="flex flex-col w-full pt-[30rem]">
-					<h1 className="text-3xl font-semibold text-center pt-6">
-						Featured Listings
-					</h1>
-					<div class="carousel carousel-center rounded-box pb-8 pt-4 px-10">
-						{featuredListings.map((listing, index) => (
-							<div class="carousel-item px-2" key={index}>
-								<a href={`/${listing._id}`}>
-									<div className="card card-compact w-[22rem] lg:w-96 shadow-xl cursor-pointer">
-										<figure className="h-44">
-											<img
-												src={
-													listing.images.length > 0 ? listing.images[0].url : ''
-												}
-												alt={
-													listing.images.length > 0 ? listing.images[0].alt : ''
-												}
-											/>
-										</figure>
-										<div className="flex flex-col px-3 py-2 pb-3">
-											<h2 className="font-semibold text-xl line">
-												${listing.price.toLocaleString()}
-											</h2>
-											<p>{`${listing.bedrooms} beds | ${listing.bathrooms} baths | ${listing.sqft} sqft`}</p>
-											<p>
-												{listing.address.replace('.', '')}, {listing.city},{' '}
-												{listing.state} {listing.zip}
-											</p>
-										</div>
-									</div>
-								</a>
-							</div>
-						))}
-					</div>
-				</div>
-			) : (
-				<></>
-			)}
-			{bookmarks && bookmarks.length > 0 ? (
-				<div className="flex flex-col w-full h-fit pt-0">
-					<h1 className="text-3xl font-semibold text-center py-4">
-						My Bookmarks
-					</h1>
-					<div class="carousel carousel-center rounded-box pb-12 px-10">
-						{bookmarks.map((listing) => (
-							<div class="carousel-item px-2">
-								<a href={`/${listing._id}`}>
-									<div className="card card-compact w-[22rem] lg:w-96 shadow-xl cursor-pointer">
-										<figure className="h-44">
-											<img
-												src={
-													listing.images.length > 0 ? listing.images[0].url : ''
-												}
-												alt={
-													listing.images.length > 0 ? listing.images[0].alt : ''
-												}
-											/>
-										</figure>
-										<div className="flex flex-col px-3 py-2 pb-3">
-											<h2 className="font-semibold text-xl line">
-												${listing.price.toLocaleString()}
-											</h2>
-											<p>{`${listing.bedrooms} beds | ${listing.bathrooms} baths | ${listing.sqft} sqft`}</p>
-											<p>
-												{listing.address.replace('.', '')}, {listing.city},{' '}
-												{listing.state} {listing.zip}
-											</p>
-										</div>
-									</div>
-								</a>
-							</div>
-						))}
-					</div>
-				</div>
-			) : (
-				<></>
-			)}
-		</div>
+			<div className="w-full h-fit flex flex-col justify-center items-center mt-[30rem]">
+				<Slide listings={featuredListings} title={'Featured Listings'} />
+				<Slide listings={bookmarks} title={'My Bookmarks'} />
+			</div>
+		</motion.div>
 	);
 };
 

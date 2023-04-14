@@ -21,7 +21,6 @@ const Listings = () => {
 		description: '',
 		images: [],
 	});
-	const [context, setContext] = useContext(Context);
 	const router = useRouter();
 
 	const { id } = router.query;
@@ -58,11 +57,9 @@ const Listings = () => {
 					: process.env.NEXT_BACK_API_URL_PROD) + `/users/me/bookmarks`,
 				{
 					method: 'GET',
+					credentials: 'include',
 					headers: {
 						'Content-Type': 'application/json',
-						Authorization: `Bearer ${localStorage.getItem(
-							'housingprof_token'
-						)}`,
 					},
 				}
 			);
@@ -70,7 +67,6 @@ const Listings = () => {
 				if (res.status === 200) {
 					const body = res.json();
 					body.then((data) => {
-						console.log(data);
 						if (data.includes(id)) {
 							setListingBookmarked(true);
 						}
@@ -91,9 +87,9 @@ const Listings = () => {
 				: process.env.NEXT_BACK_API_URL_PROD) + `/users/me/bookmarks/add/${id}`,
 			{
 				method: 'PUT',
+				credentials: 'include',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: `Bearer ${localStorage.getItem('housingprof_token')}`,
 				},
 			}
 		);
@@ -112,9 +108,9 @@ const Listings = () => {
 				`/users/me/bookmarks/remove/${id}`,
 			{
 				method: 'PUT',
+				credentials: 'include',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: `Bearer ${localStorage.getItem('housingprof_token')}`,
 				},
 			}
 		);
@@ -173,6 +169,8 @@ const Listings = () => {
 					<div className="flex flex-col">
 						<p className="text-xl font-semibold text-black">
 							${listing.price.toLocaleString()}
+							{''}
+							{listing.propertyType !== 'house' ? '/ month' : ''}
 						</p>
 						<div className="flex flex-row">
 							<p className="flex flex-row text-black items-center text-center text-sm ml-1">
@@ -281,7 +279,7 @@ const Listings = () => {
 						</p>
 					</div>
 				</div>
-				<div className="flex flex-col w-full pt-4 pb-52">
+				<div className="flex flex-col w-full pt-4 pb-6">
 					<p className="text-xl text-black font-semibold">Description</p>
 					<p className="text-sm text-black">{listing.description}</p>
 					{listing.propertyType !== 'house' ? (
@@ -291,11 +289,7 @@ const Listings = () => {
 							</p>
 							<p className="text-sm text-black">
 								{listing.buildingAmenities.map((amenity) => (
-									<li>
-										{(
-											amenity.charAt(0).toUpperCase() + amenity.slice(1)
-										).replace('_', ' ')}
-									</li>
+									<li>{amenity.charAt(0).toUpperCase() + amenity.slice(1)}</li>
 								))}
 							</p>
 						</>
