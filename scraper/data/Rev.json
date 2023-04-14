@@ -1,0 +1,150 @@
+[
+	{
+		"site": "Rev Student Living"
+	},
+	{
+		"floorPlans": [
+			{
+				"title": "Studio - S1",
+				"price": "$1610 /month",
+				"bed": "1 BED",
+				"bath": "1 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "Studio - S2",
+				"price": "$1650 /month",
+				"bed": "1 BED",
+				"bath": "1 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "1BR/1BA - A1",
+				"price": "$1850 /month",
+				"bed": "1 BED",
+				"bath": "1 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "2BR/2BA - B1",
+				"price": "$1295 /month",
+				"bed": "2 BED",
+				"bath": "2 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "2BR/2BA - B2",
+				"price": "$1249 /month",
+				"bed": "2 BED",
+				"bath": "2 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "2BR/2BA - B3",
+				"price": "$1225 /month",
+				"bed": "2 BED",
+				"bath": "2 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "2BR/2BA - B4",
+				"price": "$1325 /month",
+				"bed": "2 BED",
+				"bath": "2 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "2BR/2BA - B5",
+				"price": "$1385 /month",
+				"bed": "2 BED",
+				"bath": "2 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "2BR/2BA - B6",
+				"price": "$1299 /month",
+				"bed": "2 BED",
+				"bath": "2 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "3BR/3BA - C2",
+				"price": "$1125 /month",
+				"bed": "3 BED",
+				"bath": "3 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "3BR/3BA - C3",
+				"price": "$1175 /month",
+				"bed": "3 BED",
+				"bath": "3 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "4BR/4BA - D1",
+				"price": "$1119 /month",
+				"bed": "4 BED",
+				"bath": "4 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "4BR/4BA - D2",
+				"price": "$1139 /month",
+				"bed": "4 BED",
+				"bath": "4 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "4BR/4BA - D3 Townhome",
+				"price": "$1209 /month",
+				"bed": "4 BED",
+				"bath": "4 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "4BR/4BA - D4 Townhome",
+				"price": "$1255 /month",
+				"bed": "4 BED",
+				"bath": "4 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "4BR/4BA - D5 Townhome",
+				"price": "$1255 /month",
+				"bed": "4 BED",
+				"bath": "4 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "5BR/5BA - E1",
+				"price": "$899 /month",
+				"bed": "5 BED",
+				"bath": "5 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "5BR/5BA - E2",
+				"price": "$899 /month",
+				"bed": "5 BED",
+				"bath": "5 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			},
+			{
+				"title": "6BR/6BA - Townhome",
+				"price": "$1015 /month",
+				"bed": "6 BED",
+				"bath": "6 BATH",
+				"rentLink": "https://revstudentliving.prospectportal.com/Apartments/module/application_authentication/?_ga=2.128765070.348283350.1648822242-1875649036.1648822242"
+			}
+		]
+	},
+	{
+		"address": [
+			"315 College Main StreetCollege Station, TX 77840\n"
+		]
+	},
+	{
+		"time": "2023-4-14 16:25:57"
+	}
+]

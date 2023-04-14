@@ -1,0 +1,183 @@
+[
+	{
+		"site": "The Standard"
+	},
+	{
+		"floorPlans": [
+			{
+				"title": "The Soho",
+				"price": "Sold Out",
+				"bed": "1 Bed",
+				"bath": "1 Bath",
+				"sqft": "467-475 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Sutton",
+				"price": "Sold Out",
+				"bed": "1 Bed",
+				"bath": "1 Bath",
+				"sqft": "477-521 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Arden",
+				"price": "Sold Out",
+				"bed": "1 Bed",
+				"bath": "1 Bath",
+				"sqft": "622 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Astoria",
+				"price": "Sold Out",
+				"bed": "1 Bed",
+				"bath": "1 Bath",
+				"sqft": "560 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Bexley",
+				"price": "Starting at: $1,110/MO",
+				"bed": "2 Bed",
+				"bath": "2 Bath",
+				"sqft": "781 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Bradford",
+				"price": "Sold Out",
+				"bed": "2 Bed",
+				"bath": "2 Bath",
+				"sqft": "850 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Brookhaven",
+				"price": "Starting at: $1,130/MO",
+				"bed": "2 Bed",
+				"bath": "2 Bath",
+				"sqft": "1090 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Camden",
+				"price": "Starting at: $985/MO",
+				"bed": "3 Bed",
+				"bath": "3 Bath",
+				"sqft": "1084 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Finchley",
+				"price": "Starting at: $895/MO",
+				"bed": "4 Bed",
+				"bath": "4 Bath",
+				"sqft": "1575 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Forestdale",
+				"price": "Starting at: $975/MO",
+				"bed": "4 Bed",
+				"bath": "4 Bath",
+				"sqft": "1603 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Fulham",
+				"price": "Starting at: $965/MO",
+				"bed": "4 Bed",
+				"bath": "4 Bath",
+				"sqft": "1543 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Dawson",
+				"price": "Starting at: $950/MO",
+				"bed": "4 Bed",
+				"bath": "4 Bath",
+				"sqft": "1456-1471 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Deerwood",
+				"price": "Starting at: $905/MO",
+				"bed": "4 Bed",
+				"bath": "4 Bath",
+				"sqft": "1340 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Derby",
+				"price": "Starting at: $930/MO",
+				"bed": "4 Bed",
+				"bath": "4 Bath",
+				"sqft": "1386 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Fillmore",
+				"price": "Sold Out",
+				"bed": "4 Bed",
+				"bath": "4 Bath",
+				"sqft": "1769 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Gramercy",
+				"price": "Starting at: $790/MO",
+				"bed": "5 Bed",
+				"bath": "3 Bath",
+				"sqft": "1564 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Hackney",
+				"price": "Starting at: $930/MO",
+				"bed": "5 Bed",
+				"bath": "5 Bath",
+				"sqft": "1921 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Hamlet",
+				"price": "Starting at: $910/MO",
+				"bed": "5 Bed",
+				"bath": "5 Bath",
+				"sqft": "1912-1923 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Harrow",
+				"price": "Starting at: $815/MO",
+				"bed": "5 Bed",
+				"bath": "5 Bath",
+				"sqft": "1630 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Hounslow",
+				"price": "Starting at: $860/MO",
+				"bed": "5 Bed",
+				"bath": "5 Bath",
+				"sqft": "1645 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "The Kingston",
+				"price": "Starting at: $850/MO",
+				"bed": "6 Bed",
+				"bath": "6 Bath",
+				"sqft": "2032 SQ FT",
+				"rentLink": "https://thestandardatcollegestation.prospectportal.com/Apartments/module/application_authentication/"
+			}
+		]
+	},
+	{
+		"address": "315 Boyett St., College Station, TX 77840"
+	},
+	{
+		"time": "2023-4-14 15:50:23"
+	}
+]

@@ -1,0 +1,51 @@
+[
+	{
+		"site": "The Stack"
+	},
+	{
+		"floorPlans": [
+			{
+				"title": "1A",
+				"price": "$1,480.00-$1,520.00",
+				"bed": "1",
+				"bath": "1",
+				"sqft": "432",
+				"image": "https://stackstudentliving.com/wp-content/uploads/FloorPlans_1Bed-long.png",
+				"rentLink": "https://entrata.stackstudentliving.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "2A",
+				"price": "Private: $905.00-$945.00",
+				"bed": "2",
+				"bath": "2",
+				"sqft": "646-673",
+				"image": "https://stackstudentliving.com/wp-content/uploads/FloorPlans_2Bed-long.png",
+				"rentLink": "https://entrata.stackstudentliving.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "3A",
+				"price": "$960.00",
+				"bed": "3",
+				"bath": "3",
+				"sqft": "982",
+				"image": "https://stackstudentliving.com/wp-content/uploads/FloorPlans_3Bed-long.png",
+				"rentLink": "https://entrata.stackstudentliving.com/Apartments/module/application_authentication/"
+			},
+			{
+				"title": "4A",
+				"price": "$805.00",
+				"bed": "4",
+				"bath": "4",
+				"sqft": "1151",
+				"image": "https://stackstudentliving.com/wp-content/uploads/FloorPlans_4Bed-long.png",
+				"rentLink": "https://entrata.stackstudentliving.com/Apartments/module/application_authentication/"
+			}
+		]
+	},
+	{
+		"address": "711 Church Avenue College Station, TX 77840"
+	},
+	{
+		"time": "2023-4-14 15:28:35"
+	}
+]
