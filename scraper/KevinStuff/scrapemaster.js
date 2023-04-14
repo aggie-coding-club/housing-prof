@@ -9,7 +9,7 @@ const fs = require('fs'); // file writer
 const puppeteer = require('puppeteer');
 const robotsParser = require('robots-parser');
 
-var url = "https://stackstudentliving.com/floor-plans/#floorplans-gray-wrap/"; 
+var url = "https://thestandardcollegestation.landmark-properties.com/floorplans/"; 
 
 // DON'T CHANGE
 function writeFile(data) {
@@ -231,7 +231,109 @@ async function scrapeHousingPrices() {
 
 
 
+
+    // // The Standard
+
+    // var floorPlans = await page.$$('.fp-block');
     
+    // // const rentLink = await getRentLinks(await page.$$('a'));
+
+    // const siteJson = [{site: "The Standard"}];
+    // const siteFloorPlans = [];
+    // for (const floorPlan of floorPlans) {
+
+    //     const title = await floorPlan.$eval('.fp-name', title => title.textContent);
+
+    //     const bed = await floorPlan.$eval('.fp-beds', bed => bed.textContent);
+    //     const bath = await floorPlan.$eval('.fp-baths', bath => bath.textContent);
+    //     const sqft = await floorPlan.$eval('.fp-sqft', sqft => sqft.textContent);
+    //     const price = await floorPlan.$eval('.fp-price', price => price.textContent);
+
+    //     const image = await floorPlan.$$eval('.fp-image > img', image => image.src);
+    //     const links = await floorPlan.$$eval('.fp-link > strong > a', links => links.map(link => link.href));
+    //     const rentLink = links[1];
+
+    //     const floorPlanJson = {
+    //         title : title,
+    //         price : price,
+    //         bed : bed,
+    //         bath : bath,
+    //         sqft : sqft,
+    //         image : image,
+    //         rentLink : rentLink
+    //     };
+    //     siteFloorPlans.push(floorPlanJson);
+    // }
+
+    // // Write json out to file, add elements as they are scraped
+    // siteJson.push({floorPlans: siteFloorPlans});
+    // const address = await page.$$eval('a', link => {
+    //     return link.filter(link => {
+    //         const linkText = link.textContent.toLowerCase();
+    //         return linkText.includes("college station, tx");
+    //     }).map(link => link.textContent);
+    // });
+    // siteJson.push({address : address[0]});
+    // siteJson.push({time : getDate()});
+    // writeFile(siteJson);
+
+
+
+
+
+
+
+
+
+
+
+    // Site Name
+
+    var floorPlans = await page.$$('.fp-block');
+    
+    // const rentLink = await getRentLinks(await page.$$('a'));
+
+    const siteJson = [{site: "The Standard"}];
+    const siteFloorPlans = [];
+    for (const floorPlan of floorPlans) {
+
+        const title = await floorPlan.$eval('.fp-name', title => title.textContent);
+
+        const bed = await floorPlan.$eval('.fp-beds', bed => bed.textContent);
+        const bath = await floorPlan.$eval('.fp-baths', bath => bath.textContent);
+        const sqft = await floorPlan.$eval('.fp-sqft', sqft => sqft.textContent);
+        const price = await floorPlan.$eval('.fp-price', price => price.textContent);
+
+        const image = await floorPlan.$$eval('.fp-image > img', image => image.src);
+        const links = await floorPlan.$$eval('.fp-link > strong > a', links => links.map(link => link.href));
+        const rentLink = links[1];
+
+        const floorPlanJson = {
+            title : title,
+            price : price,
+            bed : bed,
+            bath : bath,
+            sqft : sqft,
+            image : image,
+            rentLink : rentLink
+        };
+        siteFloorPlans.push(floorPlanJson);
+    }
+
+    // Write json out to file, add elements as they are scraped
+    siteJson.push({floorPlans: siteFloorPlans});
+    const address = await page.$$eval('a', link => {
+        return link.filter(link => {
+            const linkText = link.textContent.toLowerCase();
+            return linkText.includes("college station, tx");
+        }).map(link => link.textContent);
+    });
+    siteJson.push({address : address[0]});
+    siteJson.push({time : getDate()});
+    writeFile(siteJson);
+
+
+
 
 
 

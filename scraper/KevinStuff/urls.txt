@@ -1,3 +1,10 @@
+Data scraped for: 
+
+https://live12north.com/floor-plans/
+https://stackstudentliving.com/floor-plans/#floorplans-gray-wrap/
+https://thestandardcollegestation.landmark-properties.com/floorplans/
+
+
 Working
 
 https://riseatnorthgateapts.prospectportal.com/college-station/the-rise-at-northgate/student/ - also changed layout
