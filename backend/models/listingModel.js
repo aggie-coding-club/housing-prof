@@ -15,6 +15,10 @@ const imagesModel = new mongoose.Schema({
 
 // Define Property schema
 const listingModel = new mongoose.Schema({
+	id: {
+		type: String,
+		required: true,
+	},
 	address: {
 		type: String,
 		required: true,
@@ -60,20 +64,7 @@ const listingModel = new mongoose.Schema({
 		enum: ['house', 'apartment', 'condo'],
 		required: true,
 	},
-	// Fields for apartments
-	floor: {
-		type: Number,
-		required: function () {
-			return this.propertyType === 'apartment';
-		},
-	},
 	// Fields for apartments and condos
-	roomNumber: {
-		type: String,
-		required: function () {
-			return this.propertyType === 'apartment' || this.propertyType === 'condo';
-		},
-	},
 	buildingAmenities: {
 		type: [String],
 		required: function () {
