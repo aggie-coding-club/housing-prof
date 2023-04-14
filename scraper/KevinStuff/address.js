@@ -64,7 +64,7 @@ async function scrapeHousingPrices() {
 
     // Edit code here:
     
-    const addresses = await page.$$eval('*', addresses => {
+    const addresses = await page.$$eval('body *', addresses => {
         return addresses
             .filter(address => {
                 const linkText = address.textContent.toLowerCase();
