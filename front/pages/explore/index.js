@@ -65,6 +65,35 @@ const Explore = () => {
 			});
 	};
 
+	const getFilteredListings = async () => {
+		let res = [];
+		fetch(
+			(process.env.NEXT_ENV === 'development'
+				? process.env.NEXT_BACK_API_URL_DEV
+				: process.env.NEXT_BACK_API_URL_PROD) +
+				'/listing/filter?price=' + priceRange +
+				'&zip=' + searchZip +
+				'&city=' + searchCity +
+				'&bed=' + searchBedCount +
+				'&bath=' + searchBathCount +
+				'&sqft=' + searchSqft +
+				'&type=' + searchListingType,
+			{
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}
+		)
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.length > 0) {
+					res = data;
+				} 
+			});
+		return res;
+	};
+
 	useEffect(() => {
 		getAllListings();
 	}, []);
