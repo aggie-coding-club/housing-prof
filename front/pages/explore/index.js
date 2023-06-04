@@ -16,6 +16,7 @@ const Explore = () => {
 	const [searchListingType, setSearchListingType] = useState('all');
 	const [searchKeywords, setSearchKeywords] = useState('');
 	const [fetchedListings, setFetchedListings] = useState([]);
+	const [filteredListings, setFilteredListings] = useState([]);
 	const [loading, setLoading] = useState(true);
 
 	const listingsPerPage = 8;
@@ -36,6 +37,7 @@ const Explore = () => {
 			.then((data) => {
 				setAllListings(data);
 				setListings(data);
+				filterListings(); // Filter listings at the start because the code below will use an empty filteredListings otherwise
 				setLoading(false);
 			});
 	};
@@ -65,33 +67,24 @@ const Explore = () => {
 			});
 	};
 
-	const getFilteredListings = async () => {
-		let res = [];
-		fetch(
-			(process.env.NEXT_ENV === 'development'
-				? process.env.NEXT_BACK_API_URL_DEV
-				: process.env.NEXT_BACK_API_URL_PROD) +
-				'/listing/filter?price=' + priceRange +
-				'&zip=' + searchZip +
-				'&city=' + searchCity +
-				'&bed=' + searchBedCount +
-				'&bath=' + searchBathCount +
-				'&sqft=' + searchSqft +
-				'&type=' + searchListingType,
-			{
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			}
-		)
-			.then((res) => res.json())
-			.then((data) => {
-				if (data.length > 0) {
-					res = data;
-				} 
-			});
-		return res;
+	const filterListings = () => {
+		setFilteredListings(listings.filter(
+			(listing) =>
+				listing.price <= priceRange &&
+				(searchListingType === 'all' ||
+					listing.propertyType === searchListingType) &&
+				(searchZip === '' || listing.zip === searchZip) &&
+				(searchCity === '' ||
+					listing.city.toLowerCase() === searchCity.toLowerCase()) &&
+				(searchBedCount === 0 ||
+					listing.bedrooms >= searchBedCount) &&
+				(searchBathCount === 0 ||
+					listing.bathrooms >= searchBathCount) &&
+				(searchSqft === 0 || listing.sqft >= searchSqft)
+		));
+		if (filteredListings.length === 0) {
+			setFilteredListings(listings);
+		}
 	};
 
 	useEffect(() => {
@@ -106,6 +99,10 @@ const Explore = () => {
 		}
 	}, [fetchedListings]);
 
+	useEffect(() => {
+		filterListings();
+	}, [filteredListings]);
+
 	const handleSearch = (e) => {
 		e.preventDefault();
 		if (searchKeywords.length > 0) {
@@ -117,6 +114,7 @@ const Explore = () => {
 
 	const handleSliderChange = (event) => {
 		setPriceRange(event.target.value);
+		filterListings();
 	};
 
 	return (
@@ -212,7 +210,10 @@ const Explore = () => {
 							<input
 								type="text"
 								value={searchZip}
-								onChange={(e) => setSearchZip(e.target.value)}
+								onChange={(e) => {
+									setSearchZip(e.target.value);
+									filterListings();
+								}}
 								className="block px-2 py-1 mx-3 mb-2 mt-1 border border-gray-300 rounded shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
 								placeholder="Enter zip code"
 								id="zip"
@@ -228,7 +229,10 @@ const Explore = () => {
 							<input
 								type="text"
 								value={searchCity}
-								onChange={(e) => setSearchCity(e.target.value)}
+								onChange={(e) => {
+									setSearchCity(e.target.value);
+									filterListings();
+								}}
 								className="block px-2 py-1 mx-3 mb-2 mt-1 border border-gray-300 rounded shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
 								placeholder="Enter city"
 								id="city"
@@ -245,7 +249,10 @@ const Explore = () => {
 								type="number"
 								min="0"
 								value={searchBedCount}
-								onChange={(e) => setSearchBedCount(e.target.value)}
+								onChange={(e) => {
+									setSearchBedCount(e.target.value);
+									filterListings();
+								}}
 								className="block px-2 py-1 mx-3 mb-2 mt-1 border border-gray-300 rounded shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
 								placeholder="Enter minimum bedrooms"
 								id="bedCount"
@@ -262,7 +269,10 @@ const Explore = () => {
 								type="number"
 								min="0"
 								value={searchBathCount}
-								onChange={(e) => setSearchBathCount(e.target.value)}
+								onChange={(e) => {
+									setSearchBathCount(e.target.value);
+									filterListings();
+								}}
 								className="block px-2 py-1 mx-3 mb-2 mt-1 border border-gray-300 rounded shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
 								placeholder="Enter minimum bathrooms"
 								id="bathCount"
@@ -279,7 +289,10 @@ const Explore = () => {
 								type="number"
 								min="0"
 								value={searchSqft}
-								onChange={(e) => setSearchSqft(e.target.value)}
+								onChange={(e) => {
+									setSearchSqft(e.target.value);
+									filterListings();
+								}}
 								className="block px-2 py-1 mx-3 mb-2 mt-1 border border-gray-300 rounded shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
 								placeholder="Enter minimum square footage"
 								id="sqft"
@@ -289,7 +302,10 @@ const Explore = () => {
 							title="Type of Listing"
 							options={['all', 'house', 'apartment', 'condo']}
 							activeSelection={searchListingType}
-							setActiveSelection={setSearchListingType}
+							setActiveSelection={(value) => {
+								setSearchListingType(value);
+								filterListings();
+							}}
 						/>
 					</div>
 				</div>
@@ -301,40 +317,12 @@ const Explore = () => {
 						<Loading />
 					) : (
 						<>
-							{listings.filter(
-								(listing) =>
-									listing.price <= priceRange &&
-									(searchListingType === 'all' ||
-										listing.propertyType === searchListingType) &&
-									(searchZip === '' || listing.zip === searchZip) &&
-									(searchCity === '' ||
-										listing.city.toLowerCase() === searchCity.toLowerCase()) &&
-									(searchBedCount === 0 ||
-										listing.bedrooms >= searchBedCount) &&
-									(searchBathCount === 0 ||
-										listing.bathrooms >= searchBathCount) &&
-									(searchSqft === 0 || listing.sqft >= searchSqft)
-							).length === 0 ? (
+							{filteredListings.length === 0 ? (
 								<h1 className="text-2xl">No Results Found</h1>
 							) : (
 								<>
 									<div className="w-full grid grid-flow-cols grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
-										{listings
-											.filter(
-												(listing) =>
-													listing.price <= priceRange &&
-													(searchListingType === 'all' ||
-														listing.propertyType === searchListingType) &&
-													(searchZip === '' || listing.zip === searchZip) &&
-													(searchCity === '' ||
-														listing.city.toLowerCase() ===
-															searchCity.toLowerCase()) &&
-													(searchBedCount === 0 ||
-														listing.bedrooms >= searchBedCount) &&
-													(searchBathCount === 0 ||
-														listing.bathrooms >= searchBathCount) &&
-													(searchSqft === 0 || listing.sqft >= searchSqft)
-											)
+										{filteredListings
 											.slice(
 												page * listingsPerPage,
 												(page + 1) * listingsPerPage

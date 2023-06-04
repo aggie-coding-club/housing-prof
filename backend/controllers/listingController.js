@@ -104,37 +104,6 @@ const searchListings = asyncHandler(async (req, res) => {
 	res.status(200).json(listings);
 });
 
-// @desc    Filter listings with multiple parameters
-// @route   GET /api/listings/filter?price=:price&bedrooms=:bedrooms&bathrooms=:bathrooms&sqft=:sqft&zip=:zip&city=:city&type=:type
-// @access  Public
-const filterListings = asyncHandler(async (req, res) => {
-
-	// TODO: make parameters have default values 
-	
-	// Problem: listings is different from Listing, some listings may already be filtered out when filterListings is already called
-	// Listing is the model, listings is the filtered listings, they may be different, Listing may have more listings than listings
-	// listings may have less than Listing because searchListings may be already called
-
-	// Might need to somehow pass in the current listings as a parameter
-
-	const listings = await Listing.filter(
-		(listing) =>
-			listing.price <= req.query.price &&
-			(req.query.type === 'all' ||
-				listing.propertyType === req.query.type) &&
-			(req.query.zip === '' || listing.zip === req.query.zip) &&
-			(req.query.city === '' ||
-				listing.city.toLowerCase() === req.query.city.toLowerCase()) &&
-			(req.query.bedrooms === 0 ||
-				listing.bedrooms >= req.query.bedrooms) &&
-			(req.query.bathrooms === 0 ||
-				listing.bathrooms >= req.query.bathrooms) &&
-			(req.query.sqft === 0 || listing.sqft >= req.query.sqft)
-	);
-
-	res.status(200).json(listings);
-});
-
 module.exports = {
 	createListing,
 	getAllListings,
@@ -143,5 +112,4 @@ module.exports = {
 	deleteListing,
 	getFeaturedListings,
 	searchListings,
-	filterListings,
 };
