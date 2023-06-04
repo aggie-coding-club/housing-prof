@@ -37,6 +37,7 @@ const Explore = () => {
 			.then((data) => {
 				setAllListings(data);
 				setListings(data);
+				// Line below will be deleted when price range gets swapped to min and max
 				filterListings(); // Filter listings at the start because the code below will use an empty filteredListings otherwise
 				setLoading(false);
 			});
@@ -82,7 +83,9 @@ const Explore = () => {
 					listing.bathrooms >= searchBathCount) &&
 				(searchSqft === 0 || listing.sqft >= searchSqft)
 		));
-		if (filteredListings.length === 0) {
+		
+		// sliders for price are going to be changed to min and max so it will be deleted
+		if (filteredListings.length === 0) { 
 			setFilteredListings(listings);
 		}
 	};
@@ -371,7 +374,7 @@ const Explore = () => {
 										<p>
 											Page {page + 1}/
 											{Math.ceil(
-												listings.filter(
+												filteredListings.filter(
 													(listing) =>
 														listing.price <= priceRange &&
 														(searchListingType === 'all' ||
@@ -383,7 +386,7 @@ const Explore = () => {
 											className="btn btn-ghost btn-sm ml-2 border rounded-md bg-white border-gray-200"
 											onClick={() => setPage(page + 1)}
 											disabled={
-												listings.filter(
+												filteredListings.filter(
 													(listing) =>
 														listing.price <= priceRange &&
 														(searchListingType === 'all' ||
