@@ -83,11 +83,6 @@ const Explore = () => {
 					listing.bathrooms >= searchBathCount) &&
 				(searchSqft === 0 || listing.sqft >= searchSqft)
 		));
-		
-		// sliders for price are going to be changed to min and max so it will be deleted
-		if (filteredListings.length === 0) { 
-			setFilteredListings(listings);
-		}
 	};
 
 	useEffect(() => {
@@ -117,7 +112,6 @@ const Explore = () => {
 
 	const handleSliderChange = (event) => {
 		setPriceRange(event.target.value);
-		filterListings();
 	};
 
 	return (
@@ -213,10 +207,7 @@ const Explore = () => {
 							<input
 								type="text"
 								value={searchZip}
-								onChange={(e) => {
-									setSearchZip(e.target.value);
-									filterListings();
-								}}
+								onChange={(e) => {setSearchZip(e.target.value)}}
 								className="block px-2 py-1 mx-3 mb-2 mt-1 border border-gray-300 rounded shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
 								placeholder="Enter zip code"
 								id="zip"
@@ -232,10 +223,7 @@ const Explore = () => {
 							<input
 								type="text"
 								value={searchCity}
-								onChange={(e) => {
-									setSearchCity(e.target.value);
-									filterListings();
-								}}
+								onChange={(e) => {setSearchCity(e.target.value)}}
 								className="block px-2 py-1 mx-3 mb-2 mt-1 border border-gray-300 rounded shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
 								placeholder="Enter city"
 								id="city"
@@ -252,10 +240,7 @@ const Explore = () => {
 								type="number"
 								min="0"
 								value={searchBedCount}
-								onChange={(e) => {
-									setSearchBedCount(e.target.value);
-									filterListings();
-								}}
+								onChange={(e) => {setSearchBedCount(e.target.value)}}
 								className="block px-2 py-1 mx-3 mb-2 mt-1 border border-gray-300 rounded shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
 								placeholder="Enter minimum bedrooms"
 								id="bedCount"
@@ -272,10 +257,7 @@ const Explore = () => {
 								type="number"
 								min="0"
 								value={searchBathCount}
-								onChange={(e) => {
-									setSearchBathCount(e.target.value);
-									filterListings();
-								}}
+								onChange={(e) => {setSearchBathCount(e.target.value)}}
 								className="block px-2 py-1 mx-3 mb-2 mt-1 border border-gray-300 rounded shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
 								placeholder="Enter minimum bathrooms"
 								id="bathCount"
@@ -292,10 +274,7 @@ const Explore = () => {
 								type="number"
 								min="0"
 								value={searchSqft}
-								onChange={(e) => {
-									setSearchSqft(e.target.value);
-									filterListings();
-								}}
+								onChange={(e) => {setSearchSqft(e.target.value)}}
 								className="block px-2 py-1 mx-3 mb-2 mt-1 border border-gray-300 rounded shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
 								placeholder="Enter minimum square footage"
 								id="sqft"
@@ -305,10 +284,7 @@ const Explore = () => {
 							title="Type of Listing"
 							options={['all', 'house', 'apartment', 'condo']}
 							activeSelection={searchListingType}
-							setActiveSelection={(value) => {
-								setSearchListingType(value);
-								filterListings();
-							}}
+							setActiveSelection={(value) => {setSearchListingType(value)}}
 						/>
 					</div>
 				</div>
